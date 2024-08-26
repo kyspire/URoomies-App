@@ -23,6 +23,13 @@ client.connect()
   .then(console.log("DB Connected!"))
   .then(app.listen(7776, () => {
     console.log(`Server is listening on port 7776`);
+    console.log(client.query(`SELECT * from userprofile`, async(err, res) => {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(res.rows)
+      }
+    }));
   }))
   .catch((err) => {
     console.log(err);
