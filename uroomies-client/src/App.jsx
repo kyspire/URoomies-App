@@ -8,7 +8,8 @@ import {
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import Landing from "./routes/landing.jsx";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/landing" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Login />} />
       </Routes>
     </Router>
   );
