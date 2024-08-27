@@ -5,8 +5,6 @@ import {
   useNavigate,
   BrowserRouter as Router,
 } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Information from "./pages/Information";
 import Landing from "./pages/Landing";
