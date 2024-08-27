@@ -26,7 +26,7 @@ const SignupForm = () => {
     console.log(formData);
     event.preventDefault();
     axios
-      .post('http://localhost:7776/login', formData)
+      .post('http://localhost:7776/signup', formData)
       .then((res) => {
         console.log(res);
       })
