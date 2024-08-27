@@ -79,7 +79,7 @@ client.connect()
           if(resp.rows.length == 0) {
             return res.json({success: false});
           } else {
-            return res.json({success: true});
+            return res.json({success: true, data: resp.rows[0]});
           }
           //return res.send(resp.rows);
  
