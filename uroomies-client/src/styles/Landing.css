@@ -1,0 +1,158 @@
+/* General Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 5vh 5vw;
+    background-color: transparent;
+}
+
+.body h1 {
+    font-size: 4rem; /* Ideal size for a prominent header */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3rem;
+}
+
+.body h2 {
+    font-size: 2rem; /* Ideal size for subtext, smaller than the header */
+    color: #333;
+    margin-bottom: 2.5rem;
+}
+
+/* Button Spacing */
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+/* Translucent Button Styles */
+.landing-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.25rem; /* Slightly larger font size for prominence */
+    cursor: pointer;
+    border-radius: 2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.landing-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateY(-0.3rem);
+}
+
+.landing-btn:active {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #3a2a65;
+    color: #ffffff;
+    padding: 2.5rem 0;
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Centering Icons */
+.footer-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw;
+    max-width: 100%;
+}
+
+/* Footer Button Styles */
+.footer-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin: 0;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icon Styles */
+.footer-icon {
+    width: 3vw;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
+}
+
+.footer-btn:hover .footer-icon {
+    transform: scale(1.1);
+}
+
+/* Footer Link Styles */
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer a:hover {
+    color: #ddd;
+    text-decoration: underline;
+}
+
+/* Footer Responsiveness */
+@media (max-width: 768px) {
+    .footer-wrap {
+        gap: 6vw;
+    }
+
+    .footer-icon {
+        width: 4vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-wrap {
+        gap: 8vw;
+    }
+
+    .footer-icon {
+        width: 5vw;
+    }
+}

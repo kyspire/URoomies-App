@@ -8,6 +8,7 @@ import {
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import Information from "./pages/Information";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/landing" element={<Landing />} />
+        <Route path="/information" element={<Information />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Login />} />
       </Routes>
