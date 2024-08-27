@@ -1,19 +1,29 @@
 import express from 'express'; 
 import dotenv from 'dotenv'; 
 import pkg from 'pg'; 
+import loginRouter from "./routes/loginRoute.js";
+import cors from 'cors';
 
 
 dotenv.config();
 //const PORT = process.env.PORT; 
 //const PASSWORD = process.env.PASSWORD;
 //env better, but it keeps crashing idk why
-const { Client } = pkg; 
+const { Client, Pool } = pkg; 
 const client = new Client({
   host: "localhost", 
   user: "postgres", 
   port: 5432, 
   password: "password", 
   database: "URoomies"
+})
+
+const pool = new Pool({
+  user: "postgres", 
+  host: "localhost", 
+  database: "URoomies", 
+  password: "password", 
+  port: 5432
 })
 
 
@@ -31,8 +41,32 @@ client.connect()
       }
     }));
   }))
+  .then()
   .catch((err) => {
     console.log(err);
   })
 
-  //test
+  app.use(cors({
+    origin: "http://localhost:5173"
+  }))
+  app.use(express.json())
+
+  // app.use("/login", loginRouter);
+
+  app.post("/login", async (req, res) => {
+    try {
+      const {username, name, email, password} = await req.body; 
+      pool.query(`
+        insert into userprofile(username, name, email, password, profilepicture)
+        values ('${username}', '${name}', '${email}','${password}', NULL);`, (err, res) => {
+          console.log(err, res); 
+          pool.end();
+        }); 
+
+  
+    } catch (err) {
+      console.log(err);
+    }
+  })
+
+
