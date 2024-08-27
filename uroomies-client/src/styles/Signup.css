@@ -60,3 +60,12 @@
     background-color: #222222;
     color: white;
 }
+
+.signup-form input[type="submit"]:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateY(-0.3rem);
+}
+
+.signup-form input[type="submit"]:active {
+    background-color: rgba(0, 0, 0, 0.9);
+}
