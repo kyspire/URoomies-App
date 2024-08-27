@@ -1,10 +1,17 @@
 import React from 'react'
+import Footer from './BottomBar.jsx'
 
-const LoginForm = () => {
+function LoginForm () {
   return (
-    <div>LoginForm
-      <div>hi</div>
-    </div>
+    <>
+      <div>LoginForm
+        <div>hi</div>
+      </div>
+
+      <Footer />
+    </>
+    
+
   )
 }
 
