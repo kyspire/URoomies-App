@@ -95,7 +95,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4vw;
+    gap: 40px;
     max-width: 100%;
 }
 
@@ -114,8 +114,8 @@ body {
 
 /* Icon Styles */
 .footer-icon {
-    width: 3vw;
-    height: auto;
+    width: 40px;
+    height: 40px;
     display: block;
     transition: transform 0.3s ease;
     filter: brightness(0) invert(1);
@@ -139,20 +139,22 @@ body {
 /* Footer Responsiveness */
 @media (max-width: 768px) {
     .footer-wrap {
-        gap: 6vw;
+        gap: 40px;
     }
 
     .footer-icon {
-        width: 4vw;
+        width: 40px; 
+        height: 40px; 
     }
 }
 
 @media (max-width: 480px) {
     .footer-wrap {
-        gap: 8vw;
+        gap: 40px;
     }
 
     .footer-icon {
-        width: 5vw;
+        width: 40px;
+        height: 40px;
     }
 }
