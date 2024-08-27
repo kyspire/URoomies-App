@@ -1,7 +1,7 @@
 import express from 'express'; 
 import dotenv from 'dotenv'; 
 import pkg from 'pg'; 
-import loginRouter from "./routes/loginRoute.js";
+import signInRoute from "./routes/signInRoute.js";
 import cors from 'cors';
 
 
@@ -51,9 +51,9 @@ client.connect()
   }))
   app.use(express.json())
 
-  // app.use("/login", loginRouter);
+  // app.use("/login", signInRouter);
 
-  app.post("/login", async (req, res) => {
+  app.post("/signup", async (req, res) => {
     try {
       const {username, name, email, password} = await req.body; 
       pool.query(`
