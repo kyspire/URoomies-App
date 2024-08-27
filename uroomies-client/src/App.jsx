@@ -5,12 +5,11 @@ import {
   useNavigate,
   BrowserRouter as Router,
 } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Information from "./pages/Information";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import SignupForm from "./components/SignupForm";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,9 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/landing" element={<Landing />} />
+        <Route path="/signup" element={<SignupForm />} />
         <Route path="/information" element={<Information />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Login />} />
       </Routes>
     </Router>
   );
