@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import InstagramIcon from "../assets/InstagramIcon.svg";
 import TwitterIcon from "../assets/TwitterIcon.svg";
 import InformationIcon from "../assets/InformationIcon.svg";
+import "../styles/Footer.css";
 
 function Footer() {
     const navigate = useNavigate();
