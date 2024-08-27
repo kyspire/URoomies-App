@@ -6,7 +6,9 @@ function LoginForm () {
   return (
     <>
       <div className='login-body'>
-        <img src="../../public/vannight3.jpg" alt="Background" className="background-image" />
+
+        <img src="/vannight3.jpg" alt="Background" className='login-background-image'/>
+
         <div className='form-wrapper'>
           <form className='login-form'>
             
