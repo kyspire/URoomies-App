@@ -30,7 +30,6 @@ function LoginForm () {
         </div>
       </div>
     </>
-    
 
   )
 }
