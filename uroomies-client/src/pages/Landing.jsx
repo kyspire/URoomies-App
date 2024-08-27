@@ -9,7 +9,7 @@ function LandingBody() {
 
     return (
         <div className="body">
-            <img src="../../public/ubc1.jpg" alt="Background" className="background-image" />
+            <img src="/ubc1.jpg" alt="Background" className="landing-background-image" />
             <h1>URoomies</h1>
             <h2>Find and connect with roommates on and off campus.</h2>
             <div className="btn-wrap">
