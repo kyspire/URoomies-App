@@ -11,6 +11,7 @@ import "./App.css";
 import Information from "./pages/Information";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import ProfileSetup from "./pages/ProfileSetup";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
         <Route path="/landing" element={<Landing />} />
         <Route path="/information" element={<Information />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profilesetup" element={<ProfileSetup />} />
         <Route path="*" element={<Login />} />
       </Routes>
     </Router>

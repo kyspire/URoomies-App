@@ -1,12 +1,12 @@
 import "../styles/ProfileSetup.css";
 import React from 'react';
-import Header from '../components/HeaderBar' //CREATE THIS
+import Header from '../components/HeaderBar'
 import Footer from '../components/BottomBar';
 import { useNavigate } from "react-router-dom";
 
 function SetupTitle() {
     return (
-        <div></div>
+        <div>TESTING THE SETUP</div>
     );
 };
 

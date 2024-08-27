@@ -1,0 +1,52 @@
+/* Header Styles */
+.header {
+    background-color: #3a2a65;
+    color: #ffffff;
+    padding: 2rem 0;
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Header Button Styles */
+.header-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    margin: 0;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icon Styles */
+.header-icon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
+}
+
+.header-btn:hover .header-icon {
+    transform: scale(1.1);
+}
+
+/* Header Link Styles */
+.header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header a:hover {
+    color: #ddd;
+    text-decoration: underline;
+}
