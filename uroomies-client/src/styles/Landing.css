@@ -31,14 +31,14 @@ body {
 }
 
 .body h1 {
-    font-size: 4rem; /* Ideal size for a prominent header */
+    font-size: 4rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 3rem;
 }
 
 .body h2 {
-    font-size: 2rem; /* Ideal size for subtext, smaller than the header */
+    font-size: 2rem;
     color: #333;
     margin-bottom: 2.5rem;
 }
@@ -58,7 +58,7 @@ body {
     color: #ffffff;
     border: none;
     padding: 1rem 2rem;
-    font-size: 1.25rem; /* Slightly larger font size for prominence */
+    font-size: 1.25rem;
     cursor: pointer;
     border-radius: 2rem;
     transition: background-color 0.3s ease, transform 0.3s ease;
