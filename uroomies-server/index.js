@@ -1,7 +1,6 @@
 import express from 'express'; 
 import dotenv from 'dotenv'; 
 import pkg from 'pg'; 
-import signInRoute from "./routes/signInRoute.js";
 import cors from 'cors';
 
 
@@ -51,19 +50,41 @@ client.connect()
   }))
   app.use(express.json())
 
-  // app.use("/login", signInRouter);
 
   app.post("/signup", async (req, res) => {
     try {
       const {username, name, email, password} = await req.body; 
       pool.query(`
         insert into userprofile(username, name, email, password, profilepicture)
-        values ('${username}', '${name}', '${email}','${password}', NULL);`, (err, res) => {
-          console.log(err, res); 
-          pool.end();
+        values ('${username}', '${name}', '${email}','${password}', NULL);`, (err, resp) => {
+          if(err) {
+            return res.json({success: false})
+          } else {
+            return res.json({success: true})
+          }
         }); 
+    } catch (err) {
+      console.log(err);
+    }
+  })
 
-  
+  app.get("/login", async (req, res) => {
+    try {
+      const {email, password} = req.body; 
+      console.log(req.body);
+      await pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
+        if(err) {
+          console.log(err);
+         } else {
+          if(resp.rows.length == 0) {
+            return res.json({success: false});
+          } else {
+            return res.json({success: true});
+          }
+          //return res.send(resp.rows);
+ 
+        }
+      })
     } catch (err) {
       console.log(err);
     }
