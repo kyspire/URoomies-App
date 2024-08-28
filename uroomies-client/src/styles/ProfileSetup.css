@@ -1,0 +1,170 @@
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Reset Body Display */
+body {
+    display: block;
+}
+
+/* General Styles */
+html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Main Container for Profile Setup */
+.profilesetup-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+    padding-top: 120px; /* Add padding equal to the header height */
+}
+
+/* Setup Body */
+.setupbody-container {
+    flex: 1; /* Allows the content to grow and take available space */
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box; /* Include padding within the width */
+}
+
+/* Title */
+.setup-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #3a2a65;
+}
+
+/* Name Input Section */
+.name-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 20px;
+}
+
+.first-name, .last-name {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.first-name input, .last-name input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* About Self Section */
+.about-container {
+    margin-bottom: 2rem;
+}
+
+.information-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.gender-wrap, .age-wrap, .specialization-wrap, .year-wrap {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gender-wrap label, .age-wrap input, .specialization-wrap select, .year-wrap h3 {
+    margin-top: 0.5rem;
+}
+
+input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+input[type="text"], input[type="number"], select {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Introduction and Living Habits Sections */
+.introduction-wrap, .habits-wrap {
+    margin-bottom: 2rem;
+}
+
+.introduction-wrap h1, .habits-wrap h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #3a2a65;
+}
+
+.introduction-wrap h3, .habits-wrap h3 {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+/* Update Profile Section */
+.update-container {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.update-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #3a2a65;
+}
+
+.update-container button {
+    background-color: #3a2a65;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.update-container button:hover {
+    background-color: #2d1d4b;
+}
+
+.update-container h3 {
+    margin-top: 1rem;
+    color: #666;
+}
+
+/* Picture Upload */
+.picture-container {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .name-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .setupbody-container {
+        padding: 10px;
+    }
+}

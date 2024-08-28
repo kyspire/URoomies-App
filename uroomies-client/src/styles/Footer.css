@@ -2,16 +2,15 @@
 .footer {
     background-color: #3a2a65;
     color: #ffffff;
-    padding: 2rem 0;
-    flex-shrink: 0;
+    padding: 1rem 0;
     width: 100%;
-    margin-top: auto;
+    margin-top: auto; /* Ensures the footer pushes to the bottom */
     display: flex;
     justify-content: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
+    align-items: center;
+    position: relative; /* Normal flow */
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+    box-sizing: border-box; /* Ensures padding is considered within the width */
 }
 
 /* Centering Icons */
