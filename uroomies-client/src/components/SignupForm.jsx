@@ -34,6 +34,8 @@ const SignupForm = () => {
         console.log(res);
         if(res.data.success == true) {
           alert("Successful signup!"); 
+          localStorage.setItem("user", JSON.stringify(res.data.data));
+          console.log(localStorage); 
           navigate("/profilesetup");
         } else {
           alert("error occured, please try again with a different username and email.");
