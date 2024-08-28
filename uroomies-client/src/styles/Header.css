@@ -7,17 +7,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    position: fixed; /* Keep header fixed at the top */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Ensure it stays on top of other content */
-    box-sizing: border-box; /* Include padding within the width */
-    transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing */
-}
-
-/* Class to Hide Header */
-.header-hidden {
-    top: -100px; /* Move the header off-screen */
+    position: relative;
+    z-index: 1000;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 /* Header Button Styles */

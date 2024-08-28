@@ -16,24 +16,24 @@ html, body {
     font-family: 'Arial', sans-serif;
     background-color: #f9f9f9;
     color: #333;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 /* Main Container for Profile Setup */
 .profilesetup-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure it covers the full viewport height */
-    padding-top: 120px; /* Add padding equal to the header height */
+    min-height: 100vh;
 }
 
 /* Setup Body */
 .setupbody-container {
-    flex: 1; /* Allows the content to grow and take available space */
+    flex: 1;
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
-    box-sizing: border-box; /* Include padding within the width */
+    box-sizing: border-box;
+    margin-top: 20px;
 }
 
 /* Title */
