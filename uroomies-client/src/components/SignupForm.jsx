@@ -2,17 +2,20 @@ import React from 'react';
 import { useState, useEffect} from 'react';
 import axios from 'axios';
 import "../styles/Signup.css";
+import { useNavigate } from "react-router-dom";
+
 
 
 //profilepicture as null for now becayse idk how to import it
 const SignupForm = () => {
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     username: "", 
     name: "", 
     email: "", 
     password: "", 
   })
-
+  
   function handleChange(event) {
     setFormData(prevFormData => {
       const {name, value} = event.target; 
@@ -24,12 +27,17 @@ const SignupForm = () => {
   }
 
   function handleSubmit(event) {
-    console.log(formData);
     event.preventDefault();
     axios
       .post('http://localhost:7776/signup', formData)
       .then((res) => {
         console.log(res);
+        if(res.data.success == true) {
+          alert("Successful signup!"); 
+          navigate("/login");
+        } else {
+          alert("error occured, please try again with a different username and email.");
+        }
       })
       .catch((err) => {
         console.log(err);
