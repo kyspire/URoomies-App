@@ -68,10 +68,9 @@ client.connect()
     }
   })
 
-  app.get("/login", async (req, res) => {
+  app.post("/login", async (req, res) => {
     try {
       const {email, password} = req.body; 
-      console.log(req.body);
       await pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
         if(err) {
           console.log(err);
