@@ -103,6 +103,7 @@ client.connect()
 
   app.post("/profilesetup", async (req, res) => {
     try {
+      //pp no work still, in progress
       const {userid, fname, lname, profilepicture, gender, age, specialization, yearstanding, introduction, livinghabits} = req.body;
       pool.query(`
         insert into description (userid, fname, lname, profilepicture, gender, age, specialization, yearstanding, introduction, livinghabits)
