@@ -34,7 +34,7 @@ const SignupForm = () => {
         console.log(res);
         if(res.data.success == true) {
           alert("Successful signup!"); 
-          navigate("/login");
+          navigate("/profilesetup");
         } else {
           alert("error occured, please try again with a different username and email.");
         }
