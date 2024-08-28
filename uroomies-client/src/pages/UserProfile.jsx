@@ -1,47 +1,95 @@
 import React from "react";
 import Footer from "../components/BottomBar";
 import Header from "../components/HeaderBar";
+import UserIcon from "../assets/UserIcon.svg";
+import ToggleSwitch from "../components/ToggleSwitch";
+import ConnectionsList from "../components/ConnectionsList";
 import "../styles/UserProfile.css";
+import { useNavigate } from "react-router-dom";
 
 function UserBanner() {
   return (
     <div className="user-banner">
-      <h2>User banner here</h2>
+      <img src={UserIcon} alt="User Profile Picture" className="user-icon" />
+      <div className="user-text-wrap">
+        <h1>[FIRST NAME] [LAST NAME]</h1> 
+        <h2>[YEAR OF STUDY] [SPECIALIZATION]</h2>
+      </div>
     </div>
   );
 }
 
-function FriendsList() {
-  return (
-    <div className="friends-list">
-      <h2>Friends list here</h2>
+function Connections() {
+  return(
+    <div className="connections">
+      <h2>Your Connections</h2>
+      <ConnectionsList />
     </div>
   );
-}
+};
 
 function AboutMe() {
   return (
-    <div className="user-about-me">
-      <h2>About me here</h2>
+    <div className="about-container">
+      <dl className="profile-details">
+        <dt>Age</dt>
+        <dd>[AGE]</dd>
+        <dt>Gender</dt>
+        <dd>[GENDER]</dd>
+        <dt>Specialization</dt>
+        <dd>[SPECIALIZATION]</dd>
+        <dt>Year of Study</dt>
+        <dd>[YEAR OF STUDY]</dd>
+      </dl>
+      <div className="looking">
+        <h3>Currently looking for roommates?</h3>
+        <ToggleSwitch />
+      </div>
+      <div className="about-me">
+        <h2>About Me</h2>
+        <textarea disabled class="non-editable-textarea">
+          [ABOUT ME PROFILE DESCRIPTION]
+        </textarea>
+      </div>
     </div>
   );
+}
+
+function ConnectionsAndMe() {
+  return (
+    <div className="connections-and-me">
+      <Connections />
+      <AboutMe />
+    </div>
+  )
 }
 
 function LivingHabits() {
   return (
     <div className="user-living-habits">
       <h2>Living habits here</h2>
+        <textarea disabled class="non-editable-textarea">
+          [LIVING HABITS DESCRIPTION]
+        </textarea>
     </div>
   )
 }
+
+function EditProfile() {
+  const navigate = useNavigate();
+
+  return(
+    <button type="button" className="edit-btn" onClick={() => navigate("/profilesetup")}>Edit Profile</button>
+  );
+};
 
 function UserProfileBody() {
   return (
     <div className="user-profile-container">
       <UserBanner />
-      <FriendsList />
-      <AboutMe />
+      <ConnectionsAndMe />
       <LivingHabits />
+      <EditProfile />
     </div>
 
   );
