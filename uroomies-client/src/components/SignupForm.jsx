@@ -41,7 +41,7 @@ const SignupForm = () => {
     <>
       <div className='signup-body'>
 
-        <img src='/van.jpg' alt='Background' className='signup-background-image'/>
+        <img src='/van.jpg' alt='Background' className='signup-background-image'/>  
 
         <div className='form-wrapper'>
           <form className='signup-form' onSubmit={handleSubmit}>

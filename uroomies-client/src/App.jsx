@@ -11,6 +11,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import ProfileSetup from "./pages/ProfileSetup";
 import SignupForm from "./components/SignupForm";
+import Signup from "./pages/Signup";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/landing" element={<Landing />} />
-        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/information" element={<Information />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
