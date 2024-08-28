@@ -55,12 +55,24 @@ client.connect()
     try {
       const {username, name, email, password} = await req.body; 
       pool.query(`
-        insert into userprofile(username, name, email, password, profilepicture)
-        values ('${username}', '${name}', '${email}','${password}', NULL);`, (err, resp) => {
+        insert into userprofile(username, name, email, password)
+        values ('${username}', '${name}', '${email}','${password}');`, (err, resp) => {
           if(err) {
             return res.json({success: false})
           } else {
-            return res.json({success: true})
+            pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
+              if(err) {
+                console.log(err);
+               } else {
+                if(resp.rows.length == 0) {
+                  return res.json({success: false});
+                } else {
+                  return res.json({success: true, data: resp.rows[0]});
+                }
+                //return res.send(resp.rows);
+       
+              }
+            })
           }
         }); 
     } catch (err) {
@@ -71,7 +83,7 @@ client.connect()
   app.post("/login", async (req, res) => {
     try {
       const {email, password} = req.body; 
-      await pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
+      pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
         if(err) {
           console.log(err);
          } else {
