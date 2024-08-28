@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import ProfileSetup from "./pages/ProfileSetup";
 import SignupForm from "./components/SignupForm";
 import Signup from "./pages/Signup";
+import UserProfile from "./pages/UserProfile";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/information" element={<Information />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
+        <Route path="/userprofile" element={<UserProfile />} />
       </Routes>
     </Router>
   );
