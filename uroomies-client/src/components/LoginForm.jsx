@@ -34,7 +34,7 @@ function LoginForm () {
           localStorage.setItem("user", JSON.stringify(res.data.data));
           console.log(localStorage); 
           alert("Login Successful!");
-          navigate("/");
+          navigate("/landing");
         } else {
           alert("Incorrect credentials. Please try again.");
         }
