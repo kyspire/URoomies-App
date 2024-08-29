@@ -101,4 +101,24 @@ client.connect()
     }
   })
 
+  app.post("/profilesetup", async (req, res) => {
+    try {
+      //pp no work still, in progress
+      const {userid, fname, lname, profilepicture, gender, age, specialization, yearstanding, introduction, livinghabits} = req.body;
+      pool.query(`
+        insert into description (userid, fname, lname, profilepicture, gender, age, specialization, yearstanding, introduction, livinghabits)
+        values (${userid}, '${fname}', '${lname}', 'NULL', '${gender}', ${age}, '${specialization}', ${yearstanding}, '${introduction}', '${livinghabits}')
+        `, (err, resp) => {
+          if(err) {
+            return res.json({success: false, message: "Error, something occured, please try again."}); 
+          } else {
+            return res.json({success: true, message: "Successful profile creation!"})
+          }
+        })
+
+    } catch (err) {
+      console.log(err); 
+    }
+  })
+
 
