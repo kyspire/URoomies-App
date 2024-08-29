@@ -6,7 +6,7 @@ function BackArrow() {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("/landing");
+        navigate("/");
     }
 
     return (
