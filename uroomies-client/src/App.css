@@ -2,3 +2,8 @@
     width: 50%;
     height: 50%;
 }
+
+.body {
+    margin: 0;
+    padding: 0;
+}
