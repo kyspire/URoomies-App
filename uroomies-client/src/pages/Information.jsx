@@ -30,17 +30,37 @@ function TheCreators() {
         <div className='about-creator-container'>
             <h1 className='about-creator-title'>The Creators</h1>
             <Divider />
-            <CreatorProfiles />
+            <CreatorProfile />
         </div>
     );
 };
 
-function CreatorProfiles() {
+function CreatorProfile() {
     return (
-        <div className='user-profile-pictures'>
-            <img className="user-profile-picture" src="/DjKhaled.jpg"></img>
-            <img className="user-profile-picture" src="/DjKhaled.jpg"></img>
-            <img className="user-profile-picture" src="/DjKhaled.jpg"></img>
+        <div className='creator-profiles-container'>
+            <div className='creator-profile-container'>
+                <img className="creator-profile-picture" src="/DjKhaled.jpg"></img>
+                <div className='creator-text-container'>
+                    <h2 className='creator-name'>Dj Khaled</h2>
+                    <h3 className='creator-role'>Backend Developer</h3>
+                </div>
+            </div>
+
+            <div className='creator-profile-container'>
+                <img className="creator-profile-picture" src="/DjKhaled.jpg"></img>
+                <div className='creator-text-container'>
+                    <h2 className='creator-name'>Dj Khaled</h2>
+                    <h3 className='creator-role'>Frontend Developer</h3>
+                </div>
+            </div>
+
+            <div className='creator-profile-container'>
+                <img className="creator-profile-picture" src="/DjKhaled.jpg"></img>
+                <div className='creator-text-container'>
+                    <h2 className='creator-name'>Dj Khaled</h2>
+                    <h3 className='creator-role'>Frontend Developer</h3>
+                </div>
+            </div>
         </div>
     );
 };

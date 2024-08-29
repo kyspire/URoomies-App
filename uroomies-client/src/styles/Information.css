@@ -19,16 +19,25 @@ html, body {
 .information-page-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
 }
 
 .information-body-container {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
-    max-width: 1500px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    margin-top: 20px;
+}
+
+/* made-with styles */
+.made-with-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    gap: 10px;
 }
 
 /* About project styles */
@@ -36,13 +45,45 @@ html, body {
 
 }
 
-/* */
-.user-profile-picture {
+.about-project-description {
+    height: 550px;
+}
+
+/* Creator profile styles */
+.about-creator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.creator-profiles-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.creator-profile-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.creator-profile-picture {
     width: 200px;
     height: 200px;
     border-radius: 50%;
 }
 
+.creator-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.creator-name {
+    font-size: 1.5rem;
+    margin: 0;
+}
 
 
 
