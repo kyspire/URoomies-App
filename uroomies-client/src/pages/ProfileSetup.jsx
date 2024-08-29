@@ -60,7 +60,7 @@ function AboutSelf() {
 
                 <div className="specialization-wrap">
                     <h3>Specialization</h3>
-                    <select id="majors" name="majors" placeholder="your specialization" required>
+                    <select id="majors" name="majors" placeholder="your specialization" defaultValue="" required>
                         <SpecializationList />
                     </select>
                 </div>
