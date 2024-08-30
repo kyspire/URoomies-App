@@ -42,11 +42,24 @@ html, body {
 
 /* About project styles */
 .about-project-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
+.about-project-title {
+    margin-bottom: 10px;
+    font-size: 3rem;
 }
 
 .about-project-description {
-    height: 550px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+    padding: 10px;
+    font-size: 1.7rem;
 }
 
 /* Creator profile styles */
@@ -78,6 +91,7 @@ html, body {
 .creator-text-container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .creator-name {
@@ -85,5 +99,16 @@ html, body {
     margin: 0;
 }
 
+.creator-role {
+    color: darkgray;
+}
+
+/* Divider styles */
+.custom-divider {
+    width: 1300px;
+    border: none;
+    border-top: 3px solid black;
+    margin: 10px auto;
+}
 
 
