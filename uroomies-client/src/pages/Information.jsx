@@ -21,6 +21,7 @@ function AboutTheProject() {
           finding living accommodations while fostering new friendships along
           the way.
         </p>
+        <MadeWith />
       </div>
     </div>
   );
@@ -31,6 +32,43 @@ function MadeWith() {
     <div className="made-with-container">
       <h2 className="made-with-text">Made with</h2>
       <img src={react} alt="React Logo" className="react-logo"></img>
+    </div>
+  );
+}
+
+function CurrentDevelopmentsAndFuturePlans() {
+  return (
+    <div className="future-plans-container">
+      <h1 className="future-plans-title">Future Developments</h1>
+      <Divider />
+      <div className="future-developments">
+        <div className="security-updates">
+          <h2>Security and Privacy Updates</h2>
+          <p>Backend security upgrades for user login and sign-up.</p>
+        </div>
+
+        <div className="explicit-language-filtering">
+          <h2>Toxic Comment Detection and Explicit Language Filtering</h2>
+          <p>
+            Detect and delete comments, texts, and posts that contain
+            inappropriate language. Users will also be given the option to
+            report other users.
+          </p>
+        </div>
+
+        <div className="chat-updates">
+          <h2>More Functionality for Chats</h2>
+          <p>Allow users to have the ability to edit and unsend messages.</p>
+        </div>
+
+        <div className="user-profile-updates">
+          <h2>User Profile Updates</h2>
+          <p>
+            Enable users to be able to uplaod their own profile picture instead
+            of choosing from default ones.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -83,7 +121,7 @@ function InformationBody() {
   return (
     <div className="information-body-container">
       <AboutTheProject />
-      <MadeWith />
+      <CurrentDevelopmentsAndFuturePlans />
       <TheCreators />
     </div>
   );
