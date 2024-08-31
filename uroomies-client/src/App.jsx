@@ -14,6 +14,7 @@ import SignupForm from "./components/SignupForm";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 import io from "socket.io-client"
+import ChatRoom from "./pages/ChatRoom";
 
 const socket = io.connect("http://localhost:7776/");
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
         <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/chatroom" element={<ChatRoom socket={socket} />} />
       </Routes>
     </Router>
   );
@@ -59,7 +61,7 @@ function Home() {
       </div>
       <p className="read-the-docs">Hello betas</p>
       <div className="landing-button">
-        <button onClick={() => navigate("/landing")}>Landing page</button>
+        <button onClick={() => navigate("/chatroom")}>Landing page</button>
       </div>
     </>
   );
