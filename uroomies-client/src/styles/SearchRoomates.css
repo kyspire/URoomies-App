@@ -1,0 +1,72 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    display: block;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.search-roommates-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+/* Styles for roomate pfp */
+.roommate-pfp {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+/* Styles for title area */
+.title-area {
+    padding: 30px;
+}
+
+/* Styles for all roommates display */
+.results-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+    max-width: 90vw;
+    margin: 0 auto;
+    white-space: nowrap;
+    margin-bottom: 75px;
+}
+
+/* Styles for one roomate care */
+.one-roomate {
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: 600px;
+}
+
+/* Style for search results title */
+.search-results-title {
+    font-size: 3rem;
+}
+
+/* Styles for found results text */
+.results-found {
+    font-size: 2.1rem;
+    color: darkgray;
+}
+
