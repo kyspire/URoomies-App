@@ -13,9 +13,13 @@ import ProfileSetup from "./pages/ProfileSetup";
 import SignupForm from "./components/SignupForm";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
+import io from "socket.io-client"
+
+const socket = io.connect("http://localhost:7776/");
 
 
 function App() {
+  console.log(socket);
   const [count, setCount] = useState(0);
 
   return (
