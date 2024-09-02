@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Header from '../components/HeaderBar';
-import Footer from '../components/BottomBar';
+import React, { useState, useRef, useEffect } from "react";
+import Header from "../components/HeaderBar";
+import Footer from "../components/BottomBar";
 import SpecializationList from "../components/SpecializationList";
-import axios from 'axios';
+import axios from "axios";
 import "../styles/ProfileSearch.css";
 
 function ProfileSearch() {
@@ -13,14 +13,18 @@ function ProfileSearch() {
       male: false,
       female: false,
       other: false,
-      noPreference: true
+      noPreference: true,
     },
-    major: ""
+    major: "",
   });
+
+  const [showForm, setShowForm] = useState(false);
+  const formRef = useRef(null);
+  const backToTopRef = useRef(null);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-    if (type === 'checkbox') {
+    if (type === "checkbox") {
       setFilters((prevFilters) => ({
         ...prevFilters,
         gender: {
@@ -44,7 +48,7 @@ function ProfileSearch() {
         male: false,
         female: false,
         other: false,
-        noPreference: true
+        noPreference: true,
       },
     }));
   };
@@ -62,10 +66,11 @@ function ProfileSearch() {
       age: filters.age,
       ageRange: filters.ageRange,
       gender: selectedGenders.length > 0 ? selectedGenders : ["No Preference"],
-      major: filters.major || "No Preference"
+      major: filters.major || "No Preference",
     };
 
-    axios.post('http://localhost:7776/search-profiles', searchFilters)
+    axios
+      .post("http://localhost:7776/search-profiles", searchFilters)
       .then((res) => {
         console.log("Search results:", res.data);
         // Process the search results here
@@ -76,10 +81,58 @@ function ProfileSearch() {
       });
   };
 
+  const handleScrollToTitle = () => {
+    setShowForm(false);
+    setTimeout(() => {
+      formRef.current.style.display = "none";
+    }, 500);
+  };
+
+  const handleScrollToForm = () => {
+    setShowForm(true);
+    setTimeout(() => {
+      formRef.current.style.display = "block";
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
+
+  useEffect(() => {
+    formRef.current.style.display = "none";
+  }, []);
+
   return (
     <div className="profilesearch-container">
+      <div className="home-background-wrapper"></div>
       <Header />
-      <form className="searchbody-container" onSubmit={handleSubmit}>
+      <div className={`home-title-area ${showForm ? "hide-section" : ""}`}>
+        <h1 className="home-title">Welcome to URoomies!</h1>
+        <h2 className="home-description">
+          Find other people looking for roommates by selecting from the filters
+          below
+        </h2>
+        <button
+          className="search-roommates-button"
+          onClick={handleScrollToForm}
+        >
+          Search Roommates
+        </button>
+      </div>
+      <div
+        className={`back-to-title-container ${
+          showForm ? `show-form` : `hide-form`
+        }`} ref={backToTopRef}
+      >
+        <button className="back-to-title-button" onClick={handleScrollToTitle}>
+          Back to Top
+        </button>
+      </div>
+      <form
+        className={`searchbody-container ${
+          showForm ? "show-form" : "hide-form"
+        }`}
+        onSubmit={handleSubmit}
+        ref={formRef}
+      >
         <h1 className="search-title">Search Profiles</h1>
 
         <div className="age-filter">
@@ -148,11 +201,7 @@ function ProfileSearch() {
 
         <div className="major-filter">
           <h3>Major</h3>
-          <select
-            name="major"
-            onChange={handleChange}
-            value={filters.major}
-          >
+          <select name="major" onChange={handleChange} value={filters.major}>
             <option value="">No Preference</option>
             <SpecializationList />
           </select>
