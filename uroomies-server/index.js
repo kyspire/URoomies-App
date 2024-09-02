@@ -137,11 +137,13 @@ client.connect()
 
   app.post("/profilesetup", async (req, res) => {
     try {
+      console.log(req.body);
       //pp no work still, in progress
-      const {userid, fname, lname, profilepicture, gender, age, specialization, yearstanding, introduction, livinghabits} = req.body;
+      const {userid, fname, lname, gender, age, specialization, yearstanding, introduction, livinghabits, profilepicture} = req.body;
+      const newAge = parseInt(age);
       pool.query(`
-        insert into description (userid, fname, lname, profilepicture, gender, age, specialization, yearstanding, introduction, livinghabits)
-        values (${userid}, '${fname}', '${lname}', 'NULL', '${gender}', ${age}, '${specialization}', ${yearstanding}, '${introduction}', '${livinghabits}')
+        insert into description (userid, fname, lname, gender, age, specialization, yearstanding, introduction, livinghabits, profilepicture)
+        values (${userid}, '${fname}', '${lname}', '${gender}', ${newAge}, '${specialization}', ${yearstanding}, '${introduction}', '${livinghabits}', '${profilepicture}')
         `, (err, resp) => {
           if(err) {
             return res.json({success: false, message: "Error, something occured, please try again."}); 
