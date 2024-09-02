@@ -34,7 +34,7 @@ function LoginForm (props) {
           localStorage.setItem(`${props.socket.id}`, JSON.stringify(res.data.data));
           console.log(localStorage); 
           alert("Login Successful!");
-          navigate("/landing");
+          navigate("/home");
         } else {
           alert("Incorrect credentials. Please try again.");
         }

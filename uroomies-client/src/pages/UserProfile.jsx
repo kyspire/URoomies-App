@@ -80,7 +80,7 @@ function EditProfile() {
   const navigate = useNavigate();
 
   return(
-    <button type="button" className="edit-btn" onClick={() => navigate("/profilesetup")}>Edit Profile</button>
+    <button type="button" className="edit-btn" onClick={() => navigate("/editprofile")}>Edit Profile</button>
   );
 };
 
