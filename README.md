@@ -45,4 +45,8 @@ livinghabits varchar(300) not null,
 profilepicture text, 
 foreign key (userid) references userprofile (userid)); 
 
+\d to see all relations 
+
+\d [relation] to see specs of a relation
+
 
