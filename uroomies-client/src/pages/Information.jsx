@@ -129,7 +129,7 @@ function InformationBody() {
 
 function Information() {
   return (
-    <div className="information-page-contaner">
+    <div className="information-page-container">
       <Header />
       <InformationBody />
       <Footer />
