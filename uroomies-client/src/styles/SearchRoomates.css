@@ -17,6 +17,12 @@ html, body {
     overflow-x: hidden;
 }
 
+.search-roommates-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
 .search-roommates-container {
     display: flex;
     flex-direction: column;
@@ -29,6 +35,8 @@ html, body {
     width: 250px;
     height: 250px;
     border-radius: 50%;
+    border: 1px solid lightgray;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Styles for title area */
@@ -41,6 +49,7 @@ html, body {
     display: flex;
     gap: 20px;
     overflow-x: auto;
+    overflow-y: hidden;
     padding: 10px;
     scroll-behavior: smooth;
     justify-content: flex-start;
@@ -50,13 +59,63 @@ html, body {
     margin-bottom: 75px;
 }
 
-/* Styles for one roomate care */
-.one-roomate {
+/* Styles for one roommate */
+.one-roommate {
+    position: relative;
     display: inline-block;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    width: 500px;
     height: 600px;
+    border: 1px solid gray;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px #3a2a65;
+}
+
+.connect-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #3a2a65;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 45px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 6px 10px gray;
+}
+
+.connect-button::before {
+    content: '+';
+}
+
+.one-roommate h2 {
+    padding: 3px;
+}
+
+.one-roommate h3 {
+    padding: 3px;
+    margin-bottom: 7px;
+}
+
+.roommate-about-me {
+    width: 400px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    word-wrap: break-word;
+    white-space: normal;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-top: 2px solid #3a2a65;
 }
 
 /* Style for search results title */
