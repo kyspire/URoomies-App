@@ -22,8 +22,11 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 1rem; 
     transform: translateX(+10%);
+}
+
+.picture-container .user-icon {
+    margin-bottom: 1rem; 
 }
 
 /* Picture Text */
