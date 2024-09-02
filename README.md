@@ -42,6 +42,7 @@ specialization varchar(50) not null,
 yearstanding integer not null, 
 introduction varchar(300) not null, 
 livinghabits varchar(300) not null, 
-profilepicture text); 
+profilepicture text, 
+foreign key (userid) references userprofile (userid)); 
 
 
