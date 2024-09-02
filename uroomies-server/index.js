@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv'; 
 import pkg from 'pg'; 
 import cors from 'cors';
+import { Server } from 'socket.io';
+import http from 'http';
 
 
 dotenv.config();
@@ -28,9 +30,43 @@ const pool = new Pool({
 
 const app = express(); 
 
+app.use(cors({
+  origin: "http://localhost:5173"
+}))
+app.use(express.json())
+
+const expressServer = http.createServer(app); 
+//SECURITY ISSUE IN CORS. 
+const io = new Server(expressServer, {
+  cors: {
+    origin: '*', 
+    methods: ["GET", "POST"],
+  }
+});
+
+io.on('connection', socket => {
+  console.log(`User ${socket.id} connected`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  })
+
+  socket.on("send_message", (data) => {
+    console.log(data);
+    socket.to(data.room).emit("receive_message", data);
+  })
+
+
+  socket.on("disconnect", () => {
+    console.log(`User ${socket.id} disconnected.`);
+  })
+})
+
+
 client.connect()
   .then(console.log("DB Connected!"))
-  .then(app.listen(7776, () => {
+  .then(expressServer.listen(7776, () => {
     console.log(`Server is listening on port 7776`);
     console.log(client.query(`SELECT * from userprofile`, async(err, res) => {
       if(err) {
@@ -45,10 +81,8 @@ client.connect()
     console.log(err);
   })
 
-  app.use(cors({
-    origin: "http://localhost:5173"
-  }))
-  app.use(express.json())
+
+
 
 
   app.post("/signup", async (req, res) => {
