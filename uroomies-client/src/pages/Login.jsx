@@ -2,10 +2,10 @@ import React from 'react';
 import LoginForm from '../components/LoginForm';
 import BackArrow from '../components/BackArrow';
 
-function Login() {
+function Login(props) {
   return (
     <>
-      <LoginForm />
+      <LoginForm socket={props.socket}/>
       <BackArrow />
     </>
   );

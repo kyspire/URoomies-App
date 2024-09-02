@@ -22,12 +22,14 @@ const Chats = (props) => {
       console.log(data);
       setMessageList((list) => [...list, data]);
     })
-  }, [props.socket])
+
+    return () => props.socket.off("receive_message"); // stop double send
+  }, [])
 
   return (
     <div>
       <div className="chat-header">
-        <p>Live chat, user is {JSON.parse(localStorage.getItem("user")).username}</p>
+        <p>Live chat, user is {props.username}</p>
       </div>
       <div className="chat-body">
         {messageList.map((messageContent) => {
