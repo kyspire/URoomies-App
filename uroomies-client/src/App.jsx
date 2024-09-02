@@ -22,7 +22,6 @@ import SearchRoomatesPage from "./pages/SearchRoomates";
 
 function App() {
   console.log(socket);
-  const [count, setCount] = useState(0);
 
   return (
     <Router>
@@ -31,7 +30,7 @@ function App() {
         <Route path="/landing" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/information" element={<Information />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login socket={socket} />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/profilesearch" element={<ProfileSearch />} />

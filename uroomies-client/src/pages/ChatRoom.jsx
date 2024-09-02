@@ -4,7 +4,8 @@ import Chats from '../components/Chats';
 
 
 const ChatRoom = (props) => {
-  const data = JSON.parse(localStorage.getItem("user"));
+  console.log(props.socket.id);
+  const data = JSON.parse(localStorage.getItem(`${props.socket.id}`));
   console.log(data.username);
 
   const [room, setRoom] = useState(""); 
@@ -32,7 +33,7 @@ const ChatRoom = (props) => {
          />
       <button onClick={joinRoom}>Join A room</button>
 
-      <Chats socket={props.socket} username={data.username} room={room}/>
+      <Chats socket={props.socket} username={JSON.parse(localStorage.getItem(`${props.socket.id}`)).username} room={room}/>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 
-function LoginForm () {
+function LoginForm (props) {
   const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     email: "", 
@@ -31,7 +31,7 @@ function LoginForm () {
       .then((res) => {
         console.log(res);
         if(res.data.success == true) {
-          localStorage.setItem("user", JSON.stringify(res.data.data));
+          localStorage.setItem(`${props.socket.id}`, JSON.stringify(res.data.data));
           console.log(localStorage); 
           alert("Login Successful!");
           navigate("/landing");
