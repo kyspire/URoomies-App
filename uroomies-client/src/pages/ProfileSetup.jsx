@@ -12,15 +12,15 @@ import "../styles/ProfileSetup.css";
 function ProfileSetup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    userid: 0,
-    firstName: "",
-    lastName: "",
+    userid: JSON.parse(localStorage.getItem("user")).userid,
+    fname: "",
+    lname: "",
     gender: "",
     age: 0,
-    majors: "",
-    yearOfStudy: 0,
+    specialization: "",
+    yearstanding: 0,
     introduction: "",
-    livingHabits: "",
+    livinghabits: "",
     profilePicture: null,
   });
 
@@ -32,20 +32,20 @@ function ProfileSetup() {
     }));
   };
 
-  const handleImageChange = (imageData) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      profilePicture: imageData,
-    }));
-  };
+  // const handleImageChange = (imageData) => {
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     profilePicture: imageData,
+  //   }));
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:7776/profile-setup', formData)
+    axios.post('http://localhost:7776/profilesetup', formData)
       .then((res) => {
         if (res.data.success) {
           alert("Profile setup successful!");
-          navigate("/profile-summary");
+          navigate("/login");
         } else {
           alert("There was an error setting up your profile. Please try again.");
         }
@@ -69,10 +69,10 @@ function ProfileSetup() {
             <input
               type="text"
               id="fname"
-              name="firstName"
+              name="fname"
               placeholder="Enter your first name"
               onChange={handleChange}
-              value={formData.firstName}
+              value={formData.fname}
               required
             />
           </div>
@@ -82,16 +82,16 @@ function ProfileSetup() {
             <input
               type="text"
               id="lname"
-              name="lastName"
+              name="lname"
               placeholder="Enter your last name"
               onChange={handleChange}
-              value={formData.lastName}
+              value={formData.lname}
               required
             />
           </div>
         </div>
 
-        <PictureUpload onImageChange={handleImageChange} />
+        <PictureUpload />
 
         <div className="about-container">
           <div className="information-container">
@@ -131,10 +131,10 @@ function ProfileSetup() {
                 <label htmlFor="c03">
                   <input
                     type="text"
-                    name="otherGender"
+                    name="gender"
                     placeholder="Other (specify)"
                     onChange={handleChange}
-                    value={formData.otherGender}
+                    value={formData.gender}
                   />
                 </label>
               </div>
@@ -157,10 +157,10 @@ function ProfileSetup() {
             <div className="specialization-wrap">
               <h3>Specialization</h3>
               <select
-                id="majors"
-                name="majors"
+                id="specialization"
+                name="specialization"
                 onChange={handleChange}
-                value={formData.majors}
+                value={formData.specialization}
                 required
               >
                 <SpecializationList />
@@ -169,7 +169,19 @@ function ProfileSetup() {
 
             <div className="year-wrap">
               <h3>Year of Study</h3>
-              <YearOfStudySlider onChange={(value) => setFormData({ ...formData, yearOfStudy: value })} />
+              <div className="slider-container">
+                <label htmlFor="yearstanding">Year of Study: {formData.yearstanding}</label>
+                <input
+                  type="range"
+                  id="yearstanding"
+                  name="yearstanding"
+                  min="1"
+                  max="4"
+                  value={formData.yearstanding}
+                  onChange={handleChange}
+                  className="slider"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -177,22 +189,24 @@ function ProfileSetup() {
         <div className="introduction-wrap">
           <h1>Write a Quick Introduction</h1>
           <h3>Tell your future roommates a little about yourself!</h3>
-          <IntroductionTextbox
+          <textarea
             placeholder="Write your introduction here..."
             name="introduction"
             onChange={handleChange}
             value={formData.introduction}
+            className="textbox-container"
           />
         </div>
 
         <div className="habits-wrap">
           <h1>Living Habits</h1>
           <h3>So that you can be matched with those alike.</h3>
-          <IntroductionTextbox
+          <textarea
             placeholder="Describe your living habits..."
-            name="livingHabits"
+            name="livinghabits"
             onChange={handleChange}
-            value={formData.livingHabits}
+            value={formData.livinghabits}
+            className="textbox-container"
           />
         </div>
 

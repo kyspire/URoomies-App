@@ -10,11 +10,11 @@ function YearOfStudySlider() {
 
     return (
         <div className="slider-container">
-            <label htmlFor="yearOfStudy">Year of Study: {year}</label>
+            <label htmlFor="yearstanding">Year of Study: {year}</label>
             <input
                 type="range"
-                id="yearOfStudy"
-                name="yearOfStudy"
+                id="yearstanding"
+                name="yearstanding"
                 min="1"
                 max="4"
                 value={year}
