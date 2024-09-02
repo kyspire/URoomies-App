@@ -20,12 +20,12 @@ function NameInput() {
             <div className="first-name">
                 <h2>First Name</h2>
                 <h3>This name will appear when other people view your profile.</h3>
-                <input type="text" id="fname" placeholder="Enter your first name"/>
+                <input type="text" id="fname" name="firstName" placeholder="Enter your first name" required/>
             </div>
             <div className="last-name">
                 <h2>Last Name</h2>
                 <h3>This name will appear when other people view your profile.</h3>
-                <input type="text" id="lname" placeholder="Enter your last name"/>
+                <input type="text" id="lname" name="lastName" placeholder="Enter your last name" required/>
             </div>
         </div>
     );
@@ -38,29 +38,29 @@ function AboutSelf() {
                 <div className="gender-wrap">
                     <h3>Gender</h3>
                     <div className="gender-option">
-                        <input type="radio" name="genderCheck" id="c01" value="Male" required />
+                        <input type="radio" name="gender" id="c01" value="Male" required />
                         <label htmlFor="c01">Male</label>
                     </div>
                     <div className="gender-option">
-                        <input type="radio" name="genderCheck" id="c02" value="Female" required />
+                        <input type="radio" name="gender" id="c02" value="Female" required />
                         <label htmlFor="c02">Female</label>
                     </div>
                     <div className="gender-option">
-                        <input type="radio" name="genderCheck" id="c03" value="Other" required />
+                        <input type="radio" name="gender" id="c03" value="Other" required />
                         <label htmlFor="c03">
-                            <input type="text" name="other-gender" placeholder="Other (specify)" />
+                            <input type="text" name="otherGender" placeholder="Other (specify)" />
                         </label>
                     </div>
                 </div>
 
                 <div className="age-wrap">
                     <h3>Age</h3>
-                    <input type="number" placeholder="Input age" min="19" required title="Age must be over 18" />
+                    <input type="number" name="age" placeholder="Input age" min="19" required title="Age must be over 18" />
                 </div>
 
                 <div className="specialization-wrap">
                     <h3>Specialization</h3>
-                    <select id="majors" name="majors" placeholder="your specialization" defaultValue="" required>
+                    <select id="majors" name="majors" placeholder="Your specialization" defaultValue="" required>
                         <SpecializationList />
                     </select>
                 </div>
@@ -82,6 +82,7 @@ function Introduction() {
             <h3>Tell your future roommates a little about yourself!</h3>
             <IntroductionTextbox
                 placeholder="Write your introduction here..."
+                name="introduction"
             />
         </div>
     );
@@ -94,24 +95,35 @@ function LivingHabits() {
             <h3>So that you can be matched with those alike.</h3>
             <IntroductionTextbox
                 placeholder="Describe your living habits..."
+                name="livingHabits"
             />
         </div>
     );
 };
 
 function UpdateProfile() {
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Add your form submission logic here
+        navigate('/profile-summary');
+    };
+
     return (
-        <div className="update-container">
-            <h1>Satisfied?</h1>
-            <button>Update Profile</button>
-            <h3>You can come back and make changes at anytime.</h3>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <div className="update-container">
+                <h1>Satisfied?</h1>
+                <button type="submit">Update Profile</button>
+                <h3>You can come back and make changes at anytime.</h3>
+            </div>
+        </form>
     );
 };
 
 function SetupBody() {
     return (
-        <div className="setupbody-container">
+        <form className="setupbody-container">
             <SetupTitle />
             <NameInput />
             <PictureUpload />
@@ -119,7 +131,7 @@ function SetupBody() {
             <Introduction />
             <LivingHabits />
             <UpdateProfile />
-        </div>
+        </form>
     );
 };
 

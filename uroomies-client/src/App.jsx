@@ -17,6 +17,7 @@ import io from "socket.io-client"
 import ChatRoom from "./pages/ChatRoom";
 
 const socket = io.connect("http://localhost:7776/");
+import SearchRoomatesPage from "./pages/SearchRoomates";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/profilesetup" element={<ProfileSetup />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/chatroom" element={<ChatRoom socket={socket} />} />
+        <Route path="/searchroomates" element={<SearchRoomatesPage />} />
       </Routes>
     </Router>
   );
