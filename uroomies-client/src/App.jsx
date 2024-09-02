@@ -10,7 +10,7 @@ import Information from "./pages/Information";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import ProfileSetup from "./pages/ProfileSetup";
-import SignupForm from "./components/SignupForm";
+import ProfileSearch from "./pages/ProfileSearch";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 import io from "socket.io-client"
@@ -34,6 +34,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
         <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/profilesearch" element={<ProfileSearch />} />
         <Route path="/chatroom" element={<ChatRoom socket={socket} />} />
         <Route path="/searchroommates" element={<SearchRoomatesPage />} />
       </Routes>
