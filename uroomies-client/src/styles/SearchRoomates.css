@@ -120,11 +120,14 @@ html, body {
 
 .one-roommate h2 {
     padding: 3px;
+    color: black;
+    font-weight: bold;
 }
 
 .one-roommate h3 {
     padding: 3px;
     margin-bottom: 7px;
+    color: gray;
 }
 
 .roommate-about-me {
@@ -145,6 +148,7 @@ html, body {
 .search-results-title {
     font-size: 3rem;
     color: black;
+    font-weight: bolder;
 }
 
 /* Styles for found results text */

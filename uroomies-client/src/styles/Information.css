@@ -17,10 +17,28 @@ html, body {
 }
 
 .information-page-container {
+    position: relative;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.information-page-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../public/van3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    z-index: -1;
 }
 
 .information-body-container {
@@ -154,7 +172,7 @@ html, body {
 }
 
 .creator-role {
-    color: darkgray;
+    color: gray;
 }
 
 .about-creator-title {
