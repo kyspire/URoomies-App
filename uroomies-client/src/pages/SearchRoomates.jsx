@@ -101,10 +101,6 @@ function SearchRoomates() {
 function SearchRoommatesPage() {
   return (
     <div className="search-roommates-page">
-      <div
-        style={{ backgroundImage: "url(/van2.jpg)" }}
-        className="search-roommates-background-image"
-      ></div>
       <Header />
       <SearchRoomates />
       <Footer />
