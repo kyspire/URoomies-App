@@ -66,6 +66,7 @@ html, body {
     font-size: 1.7rem;
     border: solid lightgray;
     border-radius: 10px;
+    box-shadow: 0 6px 10px #3a2a65;
 }
 
 /* Future development styles */
@@ -90,6 +91,7 @@ html, body {
     border: solid lightgray;
     border-radius: 10px;
     width: 1200px;
+    box-shadow: 0 6px 10px #3a2a65;
 }
 
 .future-developments > div {
@@ -120,18 +122,24 @@ html, body {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px #3a2a65;
 }
 
 .creator-profile-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .creator-profile-picture {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    border: 2px solid #3a2a65;
 }
 
 .creator-text-container {
