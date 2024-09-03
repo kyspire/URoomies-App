@@ -13,6 +13,10 @@ function HomeHeader() {
         navigate("/userprofile");
     }
 
+    function handleClickChat() {
+        navigate("/chatroom");
+    }
+
     return (
         <div className="home-header">
 
@@ -24,7 +28,7 @@ function HomeHeader() {
                 <img src={GearIcon} className="home-header-icon"></img>
             </button>
 
-            <button className="home-header-button chat-button">
+            <button className="home-header-button chat-button" onClick={handleClickChat}>
                 <img src={ChatIcon} className="home-header-icon"></img>
             </button>
 
