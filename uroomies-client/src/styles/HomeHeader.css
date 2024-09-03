@@ -30,3 +30,55 @@
 .home-header-button:hover .home-header-icon {
     transform: scale(1.1);
 }
+
+
+/* Signout button styles */
+.signout-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-left: 60px;
+}
+
+.signout-icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.signout-icon::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid white;
+    border-radius: 4px;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.signout-icon::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid white;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    top: 12px;
+    left: 30px;
+}
+
+/* Settings button styles */
+.settings-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-left: 60px;
+}
+
+.settings-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
