@@ -19,6 +19,7 @@ function HomeHeader() {
 
     function handleClickLogout() {
         localStorage.clear(); 
+        alert("Logged out");
         navigate("/");
     }
 
