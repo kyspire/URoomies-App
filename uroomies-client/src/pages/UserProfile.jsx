@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/BottomBar";
 import Header from "../components/HeaderBar";
 import UserIcon from "../assets/UserIcon.svg";
@@ -96,7 +96,24 @@ function UserProfileBody() {
   );
 }
 
-function UserProfile() {
+function UserProfile(props) {
+
+  const [userData, setUserData] = useEffect({});
+
+  useEffect(() => {
+    axios.post("http://localhost:7776/userprofile", JSON.parse(localStorage.getItem(`${props.socket.id}`).userid))
+      .then((res) => {
+        if(res.data.success) {
+          console.log(res.data);
+          setUserData(res.data);
+        } else {
+          alert('Error, something wrong occured.'); 
+        }
+       
+      })
+  }, [])
+
+
   return (
     <div className="user-profile-page-container">
       <Header />
