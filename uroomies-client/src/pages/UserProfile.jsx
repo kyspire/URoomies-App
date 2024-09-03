@@ -101,7 +101,7 @@ function UserProfile(props) {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem(`${props.socket.id}`))?.userid;
+    const userId = JSON.parse(localStorage.getItem(`${props.socket.id}`)).userid;
     if (userId) {
       console.log("Sending userID:", userId)
       axios.post("http://localhost:7776/userprofile", { userid: userId })
