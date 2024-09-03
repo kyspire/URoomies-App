@@ -183,4 +183,27 @@ client.connect()
     }
   }); 
 
+  app.put("/editprofile", async(req, res) => {
+    try {
+      console.log(req.body);
+      //pp no work still, in progress
+      const {userid, fname, lname, gender, age, specialization, yearstanding, introduction, livinghabits, profilepicture} = req.body;
+      const newAge = parseInt(age);
+      pool.query(`
+        update description
+        set fname = '${fname}', lname = '${lname}', gender = '${gender}', age = ${newAge}, specialization = '${specialization}', yearstanding = ${yearstanding}, introduction = '${introduction}', livinghabits = '${livinghabits}'
+        where userid = ${userid};
+        `, (err, resp) => {
+          if(err) {
+            return res.json({success: false, message: "Error, something occured, please try again."}); 
+          } else {
+            return res.json({success: true, message: "Successful profile edit!"})
+          }
+        })
+
+    } catch (err) {
+      console.log(err); 
+    }
+  })
+
 
