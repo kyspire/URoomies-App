@@ -17,10 +17,15 @@ function HomeHeader() {
         navigate("/chatroom");
     }
 
+    function handleClickLogout() {
+        localStorage.clear(); 
+        navigate("/");
+    }
+
     return (
         <div className="home-header">
 
-            <button className="home-header-button signout-button">
+            <button className="home-header-button signout-button" onClick={handleClickLogout}>
                 <img src={Logout} className="home-header-icon"></img>
             </button>
 
