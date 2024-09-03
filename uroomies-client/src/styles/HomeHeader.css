@@ -1,0 +1,32 @@
+.home-header {
+    background-color: #3a2a65;
+    color: #ffffff;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.home-header-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 7px;
+}
+
+.home-header-icon {
+    width: 60px;
+    height: 60px;
+    display: block;
+    transition: transform 0.3s ease;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+}
+
+.home-header-button:hover .home-header-icon {
+    transform: scale(1.1);
+}

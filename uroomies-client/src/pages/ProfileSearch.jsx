@@ -4,6 +4,7 @@ import Footer from "../components/BottomBar";
 import SpecializationList from "../components/SpecializationList";
 import axios from "axios";
 import "../styles/ProfileSearch.css";
+import HomeHeader from "../components/HomeHeader";
 
 function ProfileSearch() {
   const [filters, setFilters] = useState({
@@ -103,7 +104,7 @@ function ProfileSearch() {
   return (
     <div className="profilesearch-container">
       <div className="home-background-wrapper"></div>
-      <Header />
+      <HomeHeader />
       <div className={`home-title-area ${showForm ? "hide-section" : ""}`}>
         <h1 className="home-title">Welcome to URoomies!</h1>
         <h2 className="home-description">
