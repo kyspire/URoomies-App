@@ -33,7 +33,7 @@ function App() {
         <Route path="/information" element={<Information />} />
         <Route path="/login" element={<Login socket={socket} />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
-        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/userprofile" element={<UserProfile socket={socket}/>} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/home" element={<ProfileSearch />} />
         <Route path="/chatroom" element={<ChatRoom socket={socket} />} />
