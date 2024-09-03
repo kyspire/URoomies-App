@@ -159,17 +159,28 @@ client.connect()
 
   app.post("/userprofile", async (req, res) => {
     try {
-      const {userid} = req.body; 
-      pool.query(`select * from description where userid = ${userid}`, (err, resp) => {
+      console.log(req.body);
+      const { userid } = req.body; 
+
+      if (!userid) {
+        return res.json({ success: false, message: "User Id is required"});
+      }
+
+      const query = `SELECT * FROM description WHERE userid = $1`;
+      const values = [userid];
+
+      pool.query(query, values, (err, result) => {
         if (err) {
+          console.error("Query error", err);
           return res.json({success: false, message: "Error, something occured, please try again."}); 
         } else {
-          return res.json({success: true, data: resp.rows[0]});
+          console.log(result.rows[0]);
+          return res.json({success: true, data: result.rows[0] });
         }
       })
     } catch (err) {
       console.log(err);
     }
-  }) 
+  }); 
 
 
