@@ -6,6 +6,7 @@ import ToggleSwitch from "../components/ToggleSwitch";
 import ConnectionsList from "../components/ConnectionsList";
 import "../styles/UserProfile.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function UserBanner() {
   return (
@@ -48,8 +49,8 @@ function AboutMe() {
       </div>
       <div className="about-me">
         <h2>About Me</h2>
-        <textarea disabled class="non-editable-textarea">
-        [ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION]
+        <textarea disabled className="non-editable-textarea" value="[ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION]">
+        
         </textarea>
       </div>
     </div>
@@ -69,8 +70,7 @@ function LivingHabits() {
   return (
     <div className="user-living-habits">
       <h2>Living Habits</h2>
-        <textarea disabled class="non-editable-textarea">
-          [LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION]
+        <textarea disabled className="non-editable-textarea" value=" [LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION]">
         </textarea>
     </div>
   )
@@ -98,20 +98,40 @@ function UserProfileBody() {
 
 function UserProfile(props) {
 
-  const [userData, setUserData] = useEffect({});
+  const [userData, setUserData] = useState({});
+
+  // useEffect(() => {
+  //   axios.post("http://localhost:7776/userprofile", JSON.parse(localStorage.getItem(`${props.socket.id}`).userid))
+  //     .then((res) => {
+  //       if(res.data.success) {
+  //         console.log(res.data);
+  //         setUserData(res.data);
+  //       } else {
+  //         alert('Error, something wrong occured.'); 
+  //       }
+       
+  //     })
+  // }, [])
 
   useEffect(() => {
-    axios.post("http://localhost:7776/userprofile", JSON.parse(localStorage.getItem(`${props.socket.id}`).userid))
-      .then((res) => {
-        if(res.data.success) {
-          console.log(res.data);
-          setUserData(res.data);
-        } else {
-          alert('Error, something wrong occured.'); 
-        }
-       
-      })
-  }, [])
+    const userId = JSON.parse(localStorage.getItem(`${props.socket.id}`))?.userid;
+    if (userId) {
+      console.log("Sending userID:", userId)
+      axios.post("http://localhost:7776/userprofile", { userid: userId })
+        .then((res) => {
+          console.log("Response received:", res.data);
+          if (res.data.success) {
+            console.log(res.data);
+            setUserData(res.data);
+          } else {
+            alert('Error, something wrong occured.');
+          }
+        })
+        .catch((error) => {
+          console.log("There was an error", error)
+        });
+    }
+  }, [props.socket.id]);
 
 
   return (
