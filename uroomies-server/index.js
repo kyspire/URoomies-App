@@ -157,4 +157,19 @@ client.connect()
     }
   })
 
+  app.post("/userprofile", async (req, res) => {
+    try {
+      const {userid} = req.body; 
+      pool.query(`select * from description where userid = ${userid}`, (err, resp) => {
+        if (err) {
+          return res.json({success: false, message: "Error, something occured, please try again."}); 
+        } else {
+          return res.json({success: true, data: resp.rows[0]});
+        }
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  }) 
+
 
