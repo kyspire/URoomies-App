@@ -18,7 +18,7 @@ Step 6: Wait for installation.
 
 Step 7: login PGAdmin4, type in password. 
 
-Step 8: Right click databases, click create database, name it URoomies. 
+Step 8: Right click servers -> databases, click create database, name it URoomies. 
 
 Step 9: Open PSQL shell, when prompted with database[postgres]: type URoomies
 
