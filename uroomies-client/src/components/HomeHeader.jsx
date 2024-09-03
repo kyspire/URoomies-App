@@ -1,6 +1,5 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
-import HomeIcon from "../assets/HomeIcon.svg";
 import "../styles/HomeHeader.css";
 import UserIcon from "../assets/UserIcon.svg"
 
@@ -15,6 +14,14 @@ function HomeHeader() {
         <div className="home-header">
             <button className="home-header-button" onClick={handleClickProfile}>
                 <img src={UserIcon} className="home-header-icon"></img>
+            </button>
+
+            <button className="home-header-button signout-button">
+                <div className="signout-icon"></div>
+            </button>
+
+            <button className="home-header-button settings-button">
+                <div className="settings-icon"></div>
             </button>
         </div>
     );
