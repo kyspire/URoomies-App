@@ -34,7 +34,7 @@ function App() {
         <Route path="/login" element={<Login socket={socket} />} />
         <Route path="/profilesetup" element={<ProfileSetup />} />
         <Route path="/userprofile" element={<UserProfile socket={socket}/>} />
-        <Route path="/profilesearch" element={<ProfileSearch />} />
+        <Route path="/home" element={<ProfileSearch />} />
         <Route path="/editprofile" element={<EditProfile socket={socket}/>} />
         <Route path="/chatroom" element={<ChatRoom socket={socket} />} />
         <Route path="/searchroommates" element={<SearchRoomatesPage socket={socket} />} />

@@ -16,17 +16,19 @@ function ProfileSearch() {
       <div className="home-background-wrapper"></div>
       <HomeHeader />
       <div>
-        <h1 className="home-title">Welcome to URoomies!</h1>
-        <h2 className="home-description">
-          Find other people looking for roommates by selecting from the filters
-          below
-        </h2>
-        <button
-          className="search-roommates-button"
-          onClick={handleButtonClick}
-        >
-          Search Roommates
-        </button>
+        <div className="home-page-title">
+          <h1 className="home-title">Welcome to URoomies!</h1>
+          <h2 className="home-description">
+            Find other people looking for roommates by selecting from the
+            filters below
+          </h2>
+          <button
+            className="search-roommates-button"
+            onClick={handleButtonClick}
+          >
+            Search Roommates
+          </button>
+        </div>
       </div>
       <Footer />
     </div>
