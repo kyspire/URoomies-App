@@ -8,19 +8,19 @@ import "../styles/UserProfile.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function UserBanner() {
+function UserBanner(props) {
   return (
     <div className="user-banner">
       <img src={UserIcon} alt="User Profile Picture" className="user-icon" />
       <div className="user-text-wrap">
-        <h1>[FIRST NAME] [LAST NAME]</h1> 
-        <h2>[YEAR OF STUDY] [SPECIALIZATION]</h2>
+        <h1>{props.userdata.fname} {props.userdata.lname}</h1> 
+        <h2>Year {props.userdata.yearstanding} Studying {props.userdata.specialization}</h2>
       </div>
     </div>
   );
 }
 
-function Connections() {
+function Connections(props) {
   return(
     <div className="connections">
       <h2>Your Connections</h2>
@@ -29,19 +29,19 @@ function Connections() {
   );
 };
 
-function AboutMe() {
+function AboutMe(props) {
   return (
     <div className="about-container">
       <h2>Description</h2>
       <dl className="profile-details">
         <dt>Age</dt>
-        <dd>[AGE]</dd>
+        <dd>{props.userdata.age}</dd>
         <dt>Gender</dt>
-        <dd>[GENDER]</dd>
+        <dd>{props.userdata.gender}</dd>
         <dt>Specialization</dt>
-        <dd>[SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION][SPECIALIZATION]</dd>
+        <dd>{props.userdata.specialization}</dd>
         <dt>Year of Study</dt>
-        <dd>[YEAR]</dd>
+        <dd>{props.userdata.yearstanding}</dd>
       </dl>
       <div className="looking">
         <h3>Currently looking for roommates?</h3>
@@ -49,7 +49,7 @@ function AboutMe() {
       </div>
       <div className="about-me">
         <h2>About Me</h2>
-        <textarea disabled className="non-editable-textarea" value="[ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION][ABOUT ME PROFILE DESCRIPTION]">
+        <textarea disabled className="non-editable-textarea" value={props.userdata.introduction}>
         
         </textarea>
       </div>
@@ -57,20 +57,20 @@ function AboutMe() {
   );
 }
 
-function ConnectionsAndMe() {
+function ConnectionsAndMe(props) {
   return (
     <div className="connections-and-me">
-      <Connections />
-      <AboutMe />
+      <Connections userdata={props.userdata} />
+      <AboutMe userdata={props.userdata}/>
     </div>
   )
 }
 
-function LivingHabits() {
+function LivingHabits(props) {
   return (
     <div className="user-living-habits">
       <h2>Living Habits</h2>
-        <textarea disabled className="non-editable-textarea" value=" [LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION][LIVING HABITS DESCRIPTION]">
+        <textarea disabled className="non-editable-textarea" value={props.userdata.livinghabits}>
         </textarea>
     </div>
   )
@@ -84,12 +84,12 @@ function EditProfile() {
   );
 };
 
-function UserProfileBody() {
+function UserProfileBody(props) {
   return (
     <div className="user-profile-container">
-      <UserBanner />
-      <ConnectionsAndMe />
-      <LivingHabits />
+      <UserBanner userdata={props.userdata}/>
+      <ConnectionsAndMe userdata={props.userdata}/>
+      <LivingHabits userdata={props.userdata}/>
       <EditProfile />
     </div>
 
@@ -100,29 +100,16 @@ function UserProfile(props) {
 
   const [userData, setUserData] = useState({});
 
-  // useEffect(() => {
-  //   axios.post("http://localhost:7776/userprofile", JSON.parse(localStorage.getItem(`${props.socket.id}`).userid))
-  //     .then((res) => {
-  //       if(res.data.success) {
-  //         console.log(res.data);
-  //         setUserData(res.data);
-  //       } else {
-  //         alert('Error, something wrong occured.'); 
-  //       }
-       
-  //     })
-  // }, [])
-
   useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem(`${props.socket.id}`))?.userid;
+    const userId = JSON.parse(localStorage.getItem(`${props.socket.id}`)).userid;
     if (userId) {
       console.log("Sending userID:", userId)
       axios.post("http://localhost:7776/userprofile", { userid: userId })
         .then((res) => {
           console.log("Response received:", res.data);
           if (res.data.success) {
-            console.log(res.data);
-            setUserData(res.data);
+            console.log(res.data.data);
+            setUserData(res.data.data);
           } else {
             alert('Error, something wrong occured.');
           }
@@ -137,7 +124,7 @@ function UserProfile(props) {
   return (
     <div className="user-profile-page-container">
       <Header />
-      <UserProfileBody />
+      <UserProfileBody userdata={userData}/>
       <Footer />
     </div>
   );

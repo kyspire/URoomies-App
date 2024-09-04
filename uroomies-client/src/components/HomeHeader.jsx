@@ -13,10 +13,20 @@ function HomeHeader() {
         navigate("/userprofile");
     }
 
+    function handleClickChat() {
+        navigate("/chatroom");
+    }
+
+    function handleClickLogout() {
+        localStorage.clear(); 
+        alert("Logged out");
+        navigate("/");
+    }
+
     return (
         <div className="home-header">
 
-            <button className="home-header-button signout-button">
+            <button className="home-header-button signout-button" onClick={handleClickLogout}>
                 <img src={Logout} className="home-header-icon"></img>
             </button>
 
@@ -24,7 +34,7 @@ function HomeHeader() {
                 <img src={GearIcon} className="home-header-icon"></img>
             </button>
 
-            <button className="home-header-button chat-button">
+            <button className="home-header-button chat-button" onClick={handleClickChat}>
                 <img src={ChatIcon} className="home-header-icon"></img>
             </button>
 

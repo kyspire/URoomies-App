@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import "../styles/ProfileSetup.css";
 
-function EditProfile() {
+function EditProfile(props) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    userid: JSON.parse(localStorage.getItem("user")).userid,
+    userid: JSON.parse(localStorage.getItem(`${props.socket.id}`)).userid,
     fname: "",
     lname: "",
     gender: "",
@@ -23,6 +23,8 @@ function EditProfile() {
     livinghabits: "",
     profilePicture: null,
   });
+
+  console.log(formData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,13 +43,13 @@ function EditProfile() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:7776/editprofile', formData)
+    axios.put('http://localhost:7776/editprofile', formData)
       .then((res) => {
         if (res.data.success) {
-          alert("Profile setup successful!");
-          navigate("/login");
+          alert("edit profile successful!");
+          navigate("/userprofile");
         } else {
-          alert("There was an error setting up your profile. Please try again.");
+          alert("There was an error editing your profile. Please try again.");
         }
       })
       .catch((err) => {
