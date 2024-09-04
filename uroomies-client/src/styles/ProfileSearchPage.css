@@ -1,0 +1,88 @@
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+html, body {
+    height: 100%;
+    font-family: 'Georgia', serif;
+    background-color: #f9f9f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+body {
+    display: block;
+}
+
+/* Main Container for Profile Search */
+.profilesearch-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
+
+/* Background Image */
+.home-background-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../public/van4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Header */
+.home-title {
+    font-size: 4rem; /* Increased font size */
+    font-weight: bolder;
+    color: #3a2a65;
+    text-align: center;
+    margin-bottom: 2rem; /* Increased margin for better spacing */
+    margin-top: 10vh; /* Center vertically with some space from the top */
+}
+
+.home-description {
+    font-size: 1.5rem; /* Increased font size */
+    text-align: center;
+    margin-bottom: 3rem; /* Increased margin for better spacing */
+    color: #555;
+    max-width: 700px; /* Increased width for better readability */
+}
+
+/* Search Button */
+.search-roommates-button {
+    background-color: #3a2a65;
+    color: white;
+    padding: 20px 40px; /* Increased padding */
+    border-radius: 2rem;
+    font-size: 1.5rem; /* Increased font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow for prominence */
+}
+
+.search-roommates-button:hover {
+    background-color: #2c1b4e; /* Darker shade on hover */
+    transform: translateY(-0.3rem);
+}
+
+/* Footer */
+footer {
+    margin-top: auto; /* Push footer to the bottom of the page */
+}
