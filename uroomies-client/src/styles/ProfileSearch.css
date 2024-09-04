@@ -45,6 +45,17 @@ body {
 }
 
 /* Form Container */
+
+
+/* Update margin for form title */
+.home-title {
+    margin-bottom: 20px;
+    margin-top: 20px; /* Adjusted top margin for better spacing */
+    font-size: 2rem; /* Adjusted font size for better fit */
+    font-weight: bolder;
+    color: #3a2a65; /* Changed color to match search-title */
+}
+
 .home-title-area {
     display: flex;
     flex-direction: column;
@@ -59,15 +70,6 @@ body {
     margin: 20px auto; /* Center form container with margins */
     max-width: 520px; /* Max width to ensure form is not too wide */
     width: 100%; /* Full width up to max width */
-}
-
-/* Update margin for form title */
-.home-title {
-    margin-bottom: 20px;
-    margin-top: 20px; /* Adjusted top margin for better spacing */
-    font-size: 2rem; /* Adjusted font size for better fit */
-    font-weight: bolder;
-    color: #3a2a65; /* Changed color to match search-title */
 }
 
 
@@ -216,7 +218,6 @@ body {
     border: 2px solid black;
     border-radius: 2rem;
     margin-bottom: 100px;
-    background-color: white;
     box-shadow: 0 6px 10px #3a2a65;
     display: none;
 }
@@ -254,4 +255,17 @@ body {
         flex-direction: column;
         gap: 10px;
     }
+}
+
+.home-page-title {
+    margin-top: 200px;
+}
+
+.home-page-title h1 {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+.home-page-title h2 {
+    color: black;
 }

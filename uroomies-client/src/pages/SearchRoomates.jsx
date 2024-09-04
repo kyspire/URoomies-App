@@ -94,197 +94,194 @@ function SearchRoomates() {
     }, 50);
   };
 
-
-
   return (
     <div className="profilesearch-container">
       <div className="home-background-wrapper"></div>
       <HomeHeader />
       <div className={`home-title-area ${showForm ? "hide-section" : ""}`}>
-      <form
-        onSubmit={handleSubmit}
-        ref={formRef}
-      >
-        <h1 className="search-title">Search Profiles</h1>
+        <form onSubmit={handleSubmit} ref={formRef}>
+          <h1 className="search-title">Search Profiles</h1>
 
-        <div className="age-filter">
-          <h3>Age</h3>
-          <input
-            type="number"
-            name="age"
-            placeholder="Input age"
-            onChange={handleChange}
-            value={filters.age}
-          />
-          <label>
-            ±
+          <div className="age-filter">
+            <h3>Age</h3>
             <input
               type="number"
-              name="ageRange"
-              min="0"
+              name="age"
+              placeholder="Input age"
               onChange={handleChange}
-              value={filters.ageRange}
+              value={filters.age}
             />
-            years
-          </label>
-        </div>
-
-        <div className="gender-filter">
-          <h3>Gender</h3>
-          <div className="gender-options">
             <label>
+              ±
               <input
-                type="checkbox"
-                name="male"
-                checked={filters.gender.male}
+                type="number"
+                name="ageRange"
+                min="0"
                 onChange={handleChange}
+                value={filters.ageRange}
               />
-              Male
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="female"
-                checked={filters.gender.female}
-                onChange={handleChange}
-              />
-              Female
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="other"
-                checked={filters.gender.other}
-                onChange={handleChange}
-              />
-              Other
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="noPreference"
-                checked={filters.gender.noPreference}
-                onChange={handleNoPrefChange}
-              />
-              No Preference
+              years
             </label>
           </div>
-        </div>
 
-        <div className="major-filter">
-          <h3>Major</h3>
-          <select name="major" onChange={handleChange} value={filters.major}>
-            <option value="">No Preference</option>
-            <SpecializationList />
-          </select>
-        </div>
+          <div className="gender-filter">
+            <h3>Gender</h3>
+            <div className="gender-options">
+              <label>
+                <input
+                  type="checkbox"
+                  name="male"
+                  checked={filters.gender.male}
+                  onChange={handleChange}
+                />
+                Male
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="female"
+                  checked={filters.gender.female}
+                  onChange={handleChange}
+                />
+                Female
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="other"
+                  checked={filters.gender.other}
+                  onChange={handleChange}
+                />
+                Other
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="noPreference"
+                  checked={filters.gender.noPreference}
+                  onChange={handleNoPrefChange}
+                />
+                No Preference
+              </label>
+            </div>
+          </div>
 
-        <button
-          className="search-roommates-button"
-          onClick={handleScrollToForm}
-        >
-          Search Roommates
-        </button>
-      </form>
-      
+          <div className="major-filter">
+            <h3>Major</h3>
+            <select name="major" onChange={handleChange} value={filters.major}>
+              <option value="">No Preference</option>
+              <SpecializationList />
+            </select>
+          </div>
+
+          <button
+            className="search-roommates-button"
+            onClick={handleScrollToForm}
+          >
+            Search Roommates
+          </button>
+        </form>
       </div>
 
-      <div className={`searchbody-container ${
+      <div
+        className={`searchbody-container ${
           showForm ? "show-form" : "hide-form"
-        }`}>
-          <div className="title-area">
-            <h1 className="search-results-title">Search Results</h1>
-            <h2 className="results-found">Found ... results</h2>
+        }`}
+      >
+        <div className="title-area">
+          <h1 className="search-results-title">Search Results</h1>
+          <h2 className="results-found">Found ... results</h2>
+        </div>
+
+        <div className="results-container">
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
+            </div>
           </div>
 
-          <div className="results-container">
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
             </div>
+          </div>
 
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
             </div>
+          </div>
 
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
             </div>
+          </div>
 
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
             </div>
+          </div>
 
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
             </div>
+          </div>
 
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">About me</p>
             </div>
+          </div>
 
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">About me</p>
-              </div>
-            </div>
-
-            <div className="one-roommate">
-              <div className="connect-button"></div>
-              <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-              <h2>One roomate</h2>
-              <h3>2nd year Computer Science</h3>
-              <div className="roommate-about-me">
-                <p className="roommate-about-me-description">
-                  DEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-                </p>
-              </div>
+          <div className="one-roommate">
+            <div className="connect-button"></div>
+            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
+            <h2>One roomate</h2>
+            <h3>2nd year Computer Science</h3>
+            <div className="roommate-about-me">
+              <p className="roommate-about-me-description">
+                DEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+              </p>
             </div>
           </div>
         </div>
+      </div>
       <div
         className={`back-to-title-container ${
           showForm ? `show-form` : `hide-form`
-        }`} ref={backToTopRef}
+        }`}
+        ref={backToTopRef}
       >
         <button className="back-to-title-button" onClick={handleScrollToTitle}>
           Back
