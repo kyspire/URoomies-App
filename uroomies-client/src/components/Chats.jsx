@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Chats.css";
+import SendMessage from "../assets/SendMessage.svg"
 
 const Chats = (props) => {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -35,38 +36,42 @@ const Chats = (props) => {
   }, []);
 
   return (
-    <div>
-      <div className="chat-header">
-        <p>Live chat, user is {props.username}</p>
-      </div>
-      <div className="chat-body">
-        {messageList.map((messageContent, index) => {
-          const isMyMessage = messageContent.author === props.username; 
-          return (
-            <div
-              key={index}
-              className={`message ${
-                isMyMessage ? "my-message" : "other-message"
-              }`}
-            >
-              <p className="message-content">{messageContent.message}</p>
-              <span className="message-info">
-                {messageContent.author} • {messageContent.time}
-              </span>
-            </div>
-          );
-        })}
-      </div>
+    <div className="chat-page">
+      <div className="chat-area-container">
+        <div className="chat-header">
+          <p>Live chat, signed in as {props.username}</p>
+        </div>
+        <div className="chat-body">
+          {messageList.map((messageContent, index) => {
+            const isMyMessage = messageContent.author === props.username;
+            return (
+              <div
+                key={index}
+                className={`message ${
+                  isMyMessage ? "my-message" : "other-message"
+                }`}
+              >
+                <p className="message-content">{messageContent.message}</p>
+                <span className="message-info">
+                  {messageContent.author} • {messageContent.time}
+                </span>
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="chat-footer">
-        <input
-          type="text"
-          placeholder="Hey..."
-          onChange={(event) => {
-            setCurrentMessage(event.target.value);
-          }}
-        />
-        <button onClick={sendMessage}>&#9658;</button>
+        <div className="chat-footer">
+          <input
+            type="text"
+            placeholder="Hey..."
+            onChange={(event) => {
+              setCurrentMessage(event.target.value);
+            }}
+          />
+          <button className="send-message-button" onClick={sendMessage}>
+            <img className="send-message-icon "src={SendMessage}></img>
+          </button>
+        </div>
       </div>
     </div>
   );
