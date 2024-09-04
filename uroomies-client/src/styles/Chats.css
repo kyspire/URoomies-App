@@ -28,6 +28,28 @@
     border-bottom: 0;
 }
 
+
+.one-message {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    gap: 20px;
+}
+
+.my-message {
+    align-self: flex-end;
+    text-align: right;
+    margin-right: 0;
+}
+
+
+.other-message {
+    align-self: flex-start;
+    flex-direction: row-reverse;
+    text-align: left;
+    margin-left: 0;
+}
+
 .message {
     display: flex;
     flex-direction: column;
@@ -36,21 +58,25 @@
     border-radius: 10px;
     margin: 5px 0;
     word-wrap: break-word;
+    border: 1px solid black;
+    box-shadow: 0 6px 10px #3a2a65;
+    margin: 0;  
 }
 
-.my-message {
-    align-self: flex-end;
-    text-align: right;
-    margin-right: 30px;
+.my-message .message {
     background-color: lightblue;
 }
 
-.other-message {
-    align-self: flex-start;
-    text-align: left;
+.other-message .message {
     background-color: lightgray;
-    margin-left: 30px;
+}
 
+.user-profile-pfp {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 50%;
 }
 
 .message-content {

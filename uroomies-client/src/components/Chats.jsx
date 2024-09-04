@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/Chats.css";
-import SendMessage from "../assets/SendMessage.svg"
+import SendMessage from "../assets/SendMessage.svg";
 
 const Chats = (props) => {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -54,14 +54,21 @@ const Chats = (props) => {
             return (
               <div
                 key={index}
-                className={`message ${
+                className={`one-message ${
                   isMyMessage ? "my-message" : "other-message"
                 }`}
               >
-                <p className="message-content">{messageContent.message}</p>
-                <span className="message-info">
-                  {messageContent.author} • {messageContent.time}
-                </span>
+                <div
+                  className={`message ${
+                    isMyMessage ? "my-message" : "other-message"
+                  }`}
+                >
+                  <p className="message-content">{messageContent.message}</p>
+                  <span className="message-info">
+                    {messageContent.author} • {messageContent.time}
+                  </span>
+                </div>
+                <img className="user-profile-pfp" src="/DjKhaled.jpg"></img>
               </div>
             );
           })}
@@ -76,7 +83,7 @@ const Chats = (props) => {
             }}
           />
           <button className="send-message-button" onClick={sendMessage}>
-            <img className="send-message-icon "src={SendMessage}></img>
+            <img className="send-message-icon " src={SendMessage}></img>
           </button>
         </div>
       </div>
