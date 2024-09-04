@@ -206,4 +206,29 @@ client.connect()
     }
   })
 
+  app.post("/searchroommates", async (req, res) => {
+    try {
+      console.log(req.body); 
+      const {age, range, gender, specialization} = req.body; 
+      const ageLower = age - range; 
+      const ageHigher = age + range;
+      pool.query(`
+        select *
+        from userprofile 
+        inner join description on userprofile.userid = description.userid
+        where age <= ${ageHigher} AND age >= ${ageLower} AND gender = '${gender}' AND specialization = '${specialization}';
+        `, (err, resp) => {
+          if(err) {
+            return res.json({success: false, message: "Error, something occured, please try again."}); 
+          } else {
+            return res.json({success: true, data: resp.rows});
+          }
+        })
+    } catch (err) {
+      console.log(err); 
+    }
+  
+    
+  })
+
 
