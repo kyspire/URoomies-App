@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/Chats.css";
 import SendMessage from "../assets/SendMessage.svg"
 
 const Chats = (props) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const chatBodyRef = useRef(null);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -35,13 +36,19 @@ const Chats = (props) => {
     return () => props.socket.off("receive_message"); // stop double send
   }, []);
 
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messageList]);
+
   return (
     <div className="chat-page">
       <div className="chat-area-container">
         <div className="chat-header">
           <p>Live chat, signed in as {props.username}</p>
         </div>
-        <div className="chat-body">
+        <div className="chat-body" ref={chatBodyRef}>
           {messageList.map((messageContent, index) => {
             const isMyMessage = messageContent.author === props.username;
             return (
