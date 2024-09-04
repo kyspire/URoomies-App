@@ -99,7 +99,7 @@ function SearchRoomates() {
       <div className="home-background-wrapper"></div>
       <HomeHeader />
       <div className={`home-title-area ${showForm ? "hide-section" : ""}`}>
-        <form onSubmit={handleSubmit} ref={formRef}>
+        <form className="filter-roommates-form" onSubmit={handleSubmit} ref={formRef}>
           <h1 className="search-title">Search Profiles</h1>
 
           <div className="age-filter">

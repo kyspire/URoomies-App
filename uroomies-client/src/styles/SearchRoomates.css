@@ -9,6 +9,7 @@
     display: block;
 }
 
+
 html, body {
     height: 100%;
     font-family: 'Arial', sans-serif;
@@ -24,6 +25,14 @@ html, body {
     flex-direction: column;
     overflow: hidden;
     z-index: 1;
+}
+
+.filter-roommates-form {
+    padding: 20px;
+}
+
+.home-title-area {
+    transform: translateY(10vh);
 }
 
 .search-roommates-page::before {
