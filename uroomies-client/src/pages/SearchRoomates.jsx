@@ -71,7 +71,7 @@ function SearchRoomates() {
     };
 
     axios
-      .post("http://localhost:7776/search-profiles", searchFilters)
+      .post("http://localhost:7776/searchroommates", filters)
       .then((res) => {
         console.log("Search results:", res.data);
         // Process the search results here
