@@ -25,17 +25,19 @@ const ChatRoom = (props) => {
     <div className="chatroom-page">
       <Header />
       <div className="chatroom-title-area">
-        <h1 className="chat-page-title">Chatroom</h1>
+        <h1 className="chat-page-title">Welcome to the Chatroom!</h1>
         <h2 className="chat-page-description">Join a chat</h2>
-        <input
-          type="text"
-          placeholder="Room ID..."
-          value={room}
-          onChange={handleChange}
-        />
-        <button className="join-chatroom-button" onClick={joinRoom}>
-          Join A room
-        </button>
+        <div className="select-chat-area">
+          <input
+            type="text"
+            placeholder="Room ID..."
+            value={room}
+            onChange={handleChange}
+          />
+          <button className="join-chatroom-button" onClick={joinRoom}>
+            Join Room
+          </button>
+        </div>
       </div>
 
       <Chats
