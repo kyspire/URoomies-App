@@ -209,17 +209,19 @@ app.put("/editprofile", async (req, res) => {
 app.post("/searchroommates", async (req, res) => {
   try {
     console.log(req.body);
-    const { age, range, gender, specialization } = req.body;
-    const ageLower = age - range;
-    const ageHigher = age + range;
+    const { age, ageRange, gender, major } = req.body;
+    const newAge = parseInt(age);
+    const ageLower = newAge - ageRange;
+    const ageHigher = newAge + ageRange;
     if (gender.noPreference) {
       pool.query(`
         select *
         from userprofile 
         inner join description on userprofile.userid = description.userid
-        where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}';
+        where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}';
         `, (err, resp) => {
         if (err) {
+          console.log("error no pref");
           return res.json({ success: false, message: "Error, something occured, please try again." });
         } else {
           return res.json({ success: true, data: resp.rows });
@@ -232,9 +234,10 @@ app.post("/searchroommates", async (req, res) => {
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Male' AND specialization = '${specialization}';
+          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Male' AND specialization = '${major}';
           `, (err, resp) => {
           if (err) {
+            console.log("error M");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             if(resp.rows.length === 0) {
@@ -251,9 +254,10 @@ app.post("/searchroommates", async (req, res) => {
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${specialization}';
+          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${major}';
           `, (err, resp) => {
           if (err) {
+            console.log("error F");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             if(resp.rows.length === 0) {
@@ -270,9 +274,10 @@ app.post("/searchroommates", async (req, res) => {
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${specialization}';
+          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${major}';
           `, (err, resp) => {
           if (err) {
+            console.log("error O");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             if(resp.rows.length === 0) {
@@ -289,12 +294,13 @@ app.post("/searchroommates", async (req, res) => {
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}' EXCEPT
+          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
           (select * from userprofile 
           inner join description on userprofile.userid = description.userid
           where gender = 'Other');
           `, (err, resp) => {
           if (err) {
+            console.log("error MF");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             if(resp.rows.length === 0) {
@@ -311,12 +317,13 @@ app.post("/searchroommates", async (req, res) => {
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}' EXCEPT
+          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
           (select * from userprofile 
           inner join description on userprofile.userid = description.userid
           where gender = 'Female');
           `, (err, resp) => {
           if (err) {
+            console.log("error MO");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             if(resp.rows.length === 0) {
@@ -333,12 +340,13 @@ app.post("/searchroommates", async (req, res) => {
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}' EXCEPT
+          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
           (select * from userprofile 
           inner join description on userprofile.userid = description.userid
           where gender = 'Male');
           `, (err, resp) => {
           if (err) {
+            console.log("error FO");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             if(resp.rows.length === 0) {
@@ -358,6 +366,7 @@ app.post("/searchroommates", async (req, res) => {
           where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}';
           `, (err, resp) => {
           if (err) {
+            console.log("error MFO");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             return res.json({ success: true, data: resp.rows });
