@@ -214,164 +214,332 @@ app.post("/searchroommates", async (req, res) => {
     const ageLower = newAge - ageRange;
     const ageHigher = newAge + ageRange;
     if (gender.noPreference) {
-      pool.query(`
-        select *
-        from userprofile 
-        inner join description on userprofile.userid = description.userid
-        where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}';
-        `, (err, resp) => {
-        if (err) {
-          console.log("error no pref");
-          return res.json({ success: false, message: "Error, something occured, please try again." });
-        } else {
-          return res.json({ success: true, data: resp.rows });
-        }
-      })
-    } else {
-      //M
-      if (gender.male && !gender.female && !gender.other) {
+      if (major === '') {
         pool.query(`
           select *
           from userprofile 
           inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Male' AND specialization = '${major}';
+          where age <= ${ageHigher} AND age >= ${ageLower};
           `, (err, resp) => {
           if (err) {
-            console.log("error M");
-            return res.json({ success: false, message: "Error, something occured, please try again." });
-          } else {
-            if(resp.rows.length === 0) {
-              return res.json({success: false, message: "No people found"});
-            } else {
-              return res.json({ success: true, data: resp.rows });
-            }
-          }
-        })
-      }
-      //F
-      if (gender.female && !gender.male && !gender.other) {
-        pool.query(`
-          select *
-          from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${major}';
-          `, (err, resp) => {
-          if (err) {
-            console.log("error F");
-            return res.json({ success: false, message: "Error, something occured, please try again." });
-          } else {
-            if(resp.rows.length === 0) {
-              return res.json({success: false, message: "No people found"});
-            } else {
-              return res.json({ success: true, data: resp.rows });
-            }
-          }
-        })
-      }
-      //O
-      if (!gender.female && !gender.male && gender.other) {
-        pool.query(`
-          select *
-          from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${major}';
-          `, (err, resp) => {
-          if (err) {
-            console.log("error O");
-            return res.json({ success: false, message: "Error, something occured, please try again." });
-          } else {
-            if(resp.rows.length === 0) {
-              return res.json({success: false, message: "No people found"});
-            } else {
-              return res.json({ success: true, data: resp.rows });
-            }
-          }
-        })
-      }
-      //MF
-      if (gender.male && gender.female && !gender.other) {
-        pool.query(`
-          select *
-          from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
-          (select * from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where gender = 'Other');
-          `, (err, resp) => {
-          if (err) {
-            console.log("error MF");
-            return res.json({ success: false, message: "Error, something occured, please try again." });
-          } else {
-            if(resp.rows.length === 0) {
-              return res.json({success: false, message: "No people found"});
-            } else {
-              return res.json({ success: true, data: resp.rows });
-            }
-          }
-        })
-      }
-      //MO
-      if (gender.male && !gender.female && gender.other) {
-        pool.query(`
-          select *
-          from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
-          (select * from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where gender = 'Female');
-          `, (err, resp) => {
-          if (err) {
-            console.log("error MO");
-            return res.json({ success: false, message: "Error, something occured, please try again." });
-          } else {
-            if(resp.rows.length === 0) {
-              return res.json({success: false, message: "No people found"});
-            } else {
-              return res.json({ success: true, data: resp.rows });
-            }
-          }
-        })
-      }
-      //FO
-      if (!gender.male && gender.female && gender.other) {
-        pool.query(`
-          select *
-          from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
-          (select * from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where gender = 'Male');
-          `, (err, resp) => {
-          if (err) {
-            console.log("error FO");
-            return res.json({ success: false, message: "Error, something occured, please try again." });
-          } else {
-            if(resp.rows.length === 0) {
-              return res.json({success: false, message: "No people found"});
-            } else {
-              return res.json({ success: true, data: resp.rows });
-            }
-          }
-        })
-      }
-      //MFO
-      if (gender.male && gender.female && gender.other) {
-        pool.query(`
-          select *
-          from userprofile 
-          inner join description on userprofile.userid = description.userid
-          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}';
-          `, (err, resp) => {
-          if (err) {
-            console.log("error MFO");
+            console.log("error no pref");
             return res.json({ success: false, message: "Error, something occured, please try again." });
           } else {
             return res.json({ success: true, data: resp.rows });
           }
         })
+      } else {
+        pool.query(`
+          select *
+          from userprofile 
+          inner join description on userprofile.userid = description.userid
+          where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}';
+          `, (err, resp) => {
+          if (err) {
+            console.log("error no pref");
+            return res.json({ success: false, message: "Error, something occured, please try again." });
+          } else {
+            return res.json({ success: true, data: resp.rows });
+          }
+        })
+      }
+
+    } else {
+      //M
+      if (gender.male && !gender.female && !gender.other) {
+        if (major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Male';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error M");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Male' AND specialization = '${major}';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error M");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        }
+
+      }
+      //F
+      if (gender.female && !gender.male && !gender.other) {
+        if (major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error F");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${major}';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error F");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        }
+
+      }
+      //O
+      if (!gender.female && !gender.male && gender.other) {
+        if(major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error O");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND gender = 'Female' AND specialization = '${major}';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error O");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        }
+
+      }
+      //MF
+      if (gender.male && gender.female && !gender.other) {
+        if(major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} EXCEPT
+            (select * from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where gender = 'Other');
+            `, (err, resp) => {
+            if (err) {
+              console.log("error MF");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
+            (select * from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where gender = 'Other');
+            `, (err, resp) => {
+            if (err) {
+              console.log("error MF");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        }
+
+      }
+      //MO
+      if (gender.male && !gender.female && gender.other) {
+        if(major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} EXCEPT
+            (select * from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where gender = 'Female');
+            `, (err, resp) => {
+            if (err) {
+              console.log("error MO");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
+            (select * from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where gender = 'Female');
+            `, (err, resp) => {
+            if (err) {
+              console.log("error MO");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        }
+
+      }
+      //FO
+      if (!gender.male && gender.female && gender.other) {
+        if(major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} EXCEPT
+            (select * from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where gender = 'Male');
+            `, (err, resp) => {
+            if (err) {
+              console.log("error FO");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${major}' EXCEPT
+            (select * from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where gender = 'Male');
+            `, (err, resp) => {
+            if (err) {
+              console.log("error FO");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              if (resp.rows.length === 0) {
+                return res.json({ success: false, message: "No people found" });
+              } else {
+                return res.json({ success: true, data: resp.rows });
+              }
+            }
+          })
+        }
+
+      }
+      //MFO
+      if (gender.male && gender.female && gender.other) {
+        if(major === '') {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower};
+            `, (err, resp) => {
+            if (err) {
+              console.log("error MFO");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              return res.json({ success: true, data: resp.rows });
+            }
+          })
+        } else {
+          pool.query(`
+            select *
+            from userprofile 
+            inner join description on userprofile.userid = description.userid
+            where age <= ${ageHigher} AND age >= ${ageLower} AND specialization = '${specialization}';
+            `, (err, resp) => {
+            if (err) {
+              console.log("error MFO");
+              return res.json({ success: false, message: "Error, something occured, please try again." });
+            } else {
+              return res.json({ success: true, data: resp.rows });
+            }
+          })
+        }
       }
 
 
