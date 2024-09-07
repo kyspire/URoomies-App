@@ -19,6 +19,7 @@ function SearchRoomates() {
     major: "",
   });
 
+  const [searchResults, setSearchResults] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
   const backToTopRef = useRef(null);
@@ -73,6 +74,7 @@ function SearchRoomates() {
     axios
       .post("http://localhost:7776/searchroommates", filters)
       .then((res) => {
+        setSearchResults(res.data.data);
         console.log("Search results:", res.data);
         // Process the search results here
       })
@@ -194,87 +196,23 @@ function SearchRoomates() {
         </div>
 
         <div className="results-container">
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
+          {searchResults.map((roommate, index) => (
+            <div className="one-roommate" key={index}>
+              <div className="connect-button"></div>
+              <img
+                className="roommate-pfp"
+                src={"/DjKhaled.jpg"}
+                alt={`${roommate.name}'s profile`}
+              />
+              <h2>{roommate.name}</h2>
+              <h3>{roommate.yearstanding} year {roommate.specialization}</h3>
+              <div className="roommate-about-me">
+                <p className="roommate-about-me-description">
+                  {roommate.introduction || "No description available."}
+                </p>
+              </div>
             </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
-            </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
-            </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
-            </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
-            </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
-            </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">About me</p>
-            </div>
-          </div>
-
-          <div className="one-roommate">
-            <div className="connect-button"></div>
-            <img className="roommate-pfp" src="/DjKhaled.jpg"></img>
-            <h2>One roomate</h2>
-            <h3>2nd year Computer Science</h3>
-            <div className="roommate-about-me">
-              <p className="roommate-about-me-description">
-                DEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDEUIGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div
