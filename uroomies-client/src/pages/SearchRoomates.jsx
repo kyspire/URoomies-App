@@ -6,7 +6,10 @@ import axios from "axios";
 import "../styles/ProfileSearch.css";
 import HomeHeader from "../components/HomeHeader";
 
-function SearchRoomates() {
+function SearchRoomates(props) {
+  const socket = props.socket; 
+  const currUser = JSON.parse(localStorage.getItem(`${socket.id}`)).userid; 
+
   const [filters, setFilters] = useState({
     age: "",
     ageRange: 5, // Default range of ±5 years
@@ -95,6 +98,21 @@ function SearchRoomates() {
       formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
   };
+
+  const handleAddRoomate = (userid1, userid2) => {
+    const data = {
+      user1: userid1, 
+      user2: userid2
+    }
+    axios.post("http://localhost:7776/chatroom", data)
+      .then((res) => {
+        if(res.data.success) {
+          alert("Successfully added roommate connection!");
+        } else {
+          alert("Error occurred, could not add roommate connection!");
+        }
+      })
+  }
 
   return (
     <div className="profilesearch-container">
@@ -192,13 +210,13 @@ function SearchRoomates() {
       >
         <div className="title-area">
           <h1 className="search-results-title">Search Results</h1>
-          <h2 className="results-found">Found ... results</h2>
+          <h2 className="results-found">Found {searchResults.length} results</h2>
         </div>
 
         <div className="results-container">
           {searchResults.map((roommate, index) => (
             <div className="one-roommate" key={index}>
-              <div className="connect-button"></div>
+              <button className="connect-button" onClick={handleAddRoomate(roommate.userid, currUser)}></button>
               <img
                 className="roommate-pfp"
                 src={"/DjKhaled.jpg"}
