@@ -45,6 +45,13 @@ livinghabits varchar(300) not null,
 profilepicture text, 
 foreign key (userid) references userprofile (userid)); 
 
+CREATE TABLE rooms(
+roomid serial primary key,
+user1 integer not null, 
+user2 integer not null, 
+foreign key (user1) references userprofile (userid) on delete cascade, 
+foreign key (user2) references userprofile (userid) on delete cascade);
+
 //COMMANDS 
 
 \d to see all relations 
