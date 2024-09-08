@@ -548,6 +548,21 @@ app.post("/searchroommates", async (req, res) => {
     console.log(err);
   }
 
+  app.post("/chatroom", async (req, res) => {
+    try {
+      const {user1, user2} = req.body;
+      pool.query(`insert into rooms (user1, user2) values (${user1}, ${user2})`, (err, resp) => {
+        if (err) {
+          return res.json({ success: false, message: "Error, something occured, please try again." });
+        } else {
+          return res.json({ success: true, message: "user added!" });
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  })
+
 
 })
 
