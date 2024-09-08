@@ -99,20 +99,21 @@ function SearchRoomates(props) {
     }, 50);
   };
 
-  const handleAddRoomate = (userid1, userid2) => {
-    const data = {
-      user1: userid1, 
-      user2: userid2
-    }
-    axios.post("http://localhost:7776/chatroom", data)
-      .then((res) => {
-        if(res.data.success) {
-          alert("Successfully added roommate connection!");
-        } else {
-          alert("Error occurred, could not add roommate connection!");
-        }
-      })
-  }
+  // const handleAddRoomate = (userid1, userid2) => {
+  //   const data = {
+  //     user1: userid1, 
+  //     user2: userid2
+  //   }
+  //   axios.post("http://localhost:7776/chatroom", data)
+  //     .then((res) => {
+  //       if(res.data.success) {
+  //         alert("Successfully added roommate connection!");
+  //       } else {
+  //         alert("Error occurred, could not add roommate connection!");
+  //       }
+  //     })
+  // }
+
 
   return (
     <div className="profilesearch-container">
@@ -216,7 +217,7 @@ function SearchRoomates(props) {
         <div className="results-container">
           {searchResults.map((roommate, index) => (
             <div className="one-roommate" key={index}>
-              <button className="connect-button" onClick={handleAddRoomate(roommate.userid, currUser)}></button>
+              <button className="connect-button" ></button>
               <img
                 className="roommate-pfp"
                 src={"/DjKhaled.jpg"}
@@ -224,6 +225,7 @@ function SearchRoomates(props) {
               />
               <h2>{roommate.name}</h2>
               <h3>{roommate.yearstanding} year {roommate.specialization}</h3>
+              <h4>Unique Public RoomID: {roommate.userid}</h4>
               <div className="roommate-about-me">
                 <p className="roommate-about-me-description">
                   {roommate.introduction || "No description available."}

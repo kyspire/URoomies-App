@@ -9,7 +9,9 @@ const ChatRoom = (props) => {
   const data = JSON.parse(localStorage.getItem(`${props.socket.id}`));
   console.log(data.username);
 
-  const [room, setRoom] = useState("");
+  props.socket.emit("join_room", data.userid);
+
+  const [room, setRoom] = useState(data.userid);
 
   const joinRoom = () => {
     if (room !== "") {
@@ -18,7 +20,12 @@ const ChatRoom = (props) => {
   };
 
   function handleChange(event) {
-    setRoom(event.target.value);
+    const val = event.target.value; 
+    if(Number.isInteger(parseInt(val))) {
+      setRoom(parseInt(val))
+    } else {
+      setRoom(event.target.value);
+    }
   }
 
   return (
