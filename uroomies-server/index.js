@@ -4,6 +4,7 @@ import pkg from 'pg';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import http from 'http';
+import bcrypt from 'bcrypt';
 
 
 dotenv.config();
@@ -88,13 +89,15 @@ client.connect()
 app.post("/signup", async (req, res) => {
   try {
     const { username, name, email, password } = await req.body;
+    const hash = await bcrypt.hash(password, 10); 
+    console.log(hash);
     pool.query(`
         insert into userprofile(username, name, email, password)
-        values ('${username}', '${name}', '${email}','${password}');`, (err, resp) => {
+        values ('${username}', '${name}', '${email}','${hash}');`, (err, resp) => {
       if (err) {
         return res.json({ success: false })
       } else {
-        pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
+        pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' `, (err, resp) => {
           if (err) {
             console.log(err);
           } else {
@@ -117,14 +120,20 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' AND u.password = '${password}' `, (err, resp) => {
+    pool.query(`SELECT * FROM userprofile u WHERE u.email = '${email}' `, (err, resp) => {
       if (err) {
         console.log(err);
       } else {
         if (resp.rows.length == 0) {
           return res.json({ success: false });
         } else {
-          return res.json({ success: true, data: resp.rows[0] });
+          const isMatch = bcrypt.compare(password, resp.rows[0].password);
+          if(isMatch) {
+            return res.json({ success: true, data: resp.rows[0] });
+          } else {
+            return res.json({ success: false });
+          }
+          
         }
         //return res.send(resp.rows);
 
