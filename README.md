@@ -29,7 +29,7 @@ userid serial primary key,
 username varchar(30) not null, 
 name varchar(30) not null, 
 email varchar(40) not null,
-password varchar(30) not null); 
+password text not null); 
 
 CREATE TABLE description( 
 descriptionid serial primary key, 
